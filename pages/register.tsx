@@ -125,8 +125,10 @@ export default function Register() {
 
                         <Button>{t("register")}</Button>
 
-                        <div className={"text-xs mt-2 link"}>
-                            <Link href={"/login"}>{t("have-account")}</Link>
+                        <div className={"flex mt-2"}>
+                            <Link href={"/login"}>
+                                <a className={"text-xs mt-2 text-blue-500 hover:underline"}>{t("have-account")}</a>
+                            </Link>
                         </div>
                     </form>)}
             </Formik>
