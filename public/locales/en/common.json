@@ -1,0 +1,15 @@
+{
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "verify-password": "Verify password",
+  "register": "Register",
+  "account-creation": "Account creation",
+  "have-account": "Already have an account?",
+  "need-account": "Do you not have an account?",
+  "password-rule-1": "Must be at least 8 characters long.",
+  "password-rule-2": "Must contain lower and upper case letters.",
+  "password-rule-3": "Must contain at least 1 symbol.",
+  "password-rule-4": "Must contain at least 1 number."
+}

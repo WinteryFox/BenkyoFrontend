@@ -1,0 +1,15 @@
+{
+  "username": "ユーザー名",
+  "email": "メール",
+  "password": "パスワード",
+  "login": "ログイン",
+  "verify-password": "パスワードもう一回",
+  "register": "登録",
+  "account-creation": "アカウント作成",
+  "have-account": "既にアカウントをお持ちですか？",
+  "need-account": "アカウントが必要ですか？",
+  "password-rule-1": "少なくとも8文字以上。",
+  "password-rule-2": "大文字と小文字を含む。",
+  "password-rule-3": "少なくとも1つ特殊な文字（！、？等）を含む。",
+  "password-rule-4": "少なくとも1つの数字を含む。"
+}
