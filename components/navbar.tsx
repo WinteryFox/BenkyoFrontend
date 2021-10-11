@@ -2,9 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from "./button";
 import {useTranslation} from "next-i18next";
+import {useRouter} from "next/router";
 
 export default function Navbar() {
     const {t} = useTranslation()
+    const router = useRouter()
 
     return (
         <nav
@@ -15,8 +17,8 @@ export default function Navbar() {
                 </a>
             </Link>
 
-            <Button>
-                <Link href={"/login"}>{t("login")}</Link>
+            <Button onClick={() => router.push("/login")}>
+                {t("login")}
             </Button>
         </nav>
     )

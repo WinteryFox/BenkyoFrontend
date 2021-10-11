@@ -1,8 +1,10 @@
 {
   "username": "ユーザー名",
-  "email": "メール",
+  "email": "メールアドレス",
   "password": "パスワード",
   "login": "ログイン",
+  "welcome-back": "おかえりなさい！",
+  "meet-again": "またお会いしましたね",
   "verify-password": "パスワードもう一回",
   "register": "登録",
   "account-creation": "アカウント作成",
@@ -11,5 +13,10 @@
   "password-rule-1": "少なくとも8文字以上。",
   "password-rule-2": "大文字と小文字を含む。",
   "password-rule-3": "少なくとも1つ特殊な文字（！、？等）を含む。",
-  "password-rule-4": "少なくとも1つの数字を含む。"
+  "password-rule-4": "少なくとも1つの数字を含む。",
+  "required": "入力必須項目です。",
+  "invalid-email": "メールアドレスが正しくありません。",
+  "must-match": "パスワードが間違っています。",
+  "invalid-username": "2字以上32字以下の文字を入力してください。",
+  "email-registered": "メールは既に登録されています。"
 }

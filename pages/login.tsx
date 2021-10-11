@@ -2,6 +2,11 @@ import {Formik} from "formik";
 import UserPool from "../src/UserPool";
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import Image from "next/image";
+import {useTranslation} from "next-i18next";
+import Input from "../components/input";
+import Button from "../components/button";
+import Link from "next/link";
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -12,67 +17,71 @@ export async function getStaticProps({locale}: any) {
 }
 
 export default function Login() {
+    const {t} = useTranslation()
+
     return (
-        <div className="w-full max-w-xs">
-            <Formik onSubmit={(values, {setSubmitting}) => {
-                setSubmitting(true)
-                const user = new CognitoUser({
-                    Username: values.email,
-                    Pool: UserPool
-                })
+        <div className={"flex items-center justify-center w-full h-full"}>
+            <Image src={"/cherry_blossom.svg"} alt={"background"} layout={"fill"} objectFit={"cover"} priority/>
+            <Formik
+                onSubmit={(values, {setSubmitting}) => {
+                    const user = new CognitoUser({
+                        Username: values.email,
+                        Pool: UserPool
+                    })
 
-                const authDetails = new AuthenticationDetails({
-                    Username: values.email,
-                    Password: values.password
-                })
+                    const authDetails = new AuthenticationDetails({
+                        Username: values.email,
+                        Password: values.password
+                    })
 
-                user.authenticateUser(authDetails, {
-                    onSuccess: (data) => {
-                        console.log(data)
-                    },
-                    onFailure: (err) => {
-                        console.log(err)
-                    },
-                    newPasswordRequired: (data) => {
-                        console.log(data)
-                    }
-                })
-
-                setSubmitting(false)
-            }}
-                    initialValues={{email: '', password: ''}}>
+                    user.authenticateUser(authDetails, {
+                        onSuccess: (data) => {
+                            console.log(data)
+                            setSubmitting(false)
+                        },
+                        onFailure: (err) => {
+                            console.error(err)
+                            setSubmitting(false)
+                        },
+                        newPasswordRequired: (data) => {
+                            console.log(data)
+                            setSubmitting(false)
+                        }
+                    })
+                }}
+                initialValues={{email: '', password: ''}}>
                 {({
+                      touched,
+                      errors,
                       values,
                       handleChange,
-                      handleSubmit
+                      handleSubmit,
+                      isSubmitting
                   }) => (
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                                Email
-                            </label>
-                            <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="username" type="text" placeholder="Email" name="email" value={values.email} onChange={handleChange} required/>
+                    <form onSubmit={handleSubmit}
+                          className={"z-10 flex flex-col rounded max-w-lg w-full p-8 bg-white shadow"}>
+                        <h3 className={"flex text-2xl font-bold mb-1"}>{t("welcome-back")}</h3>
+                        <h4 className={"flex text-sm mb-4 text-gray-500"}>{t("meet-again")}</h4>
+
+                        <div className={"mb-4"}>
+                            <Input id={"email"} value={values.email} onChange={handleChange} autocomplete={"username"}>
+                                {t("email")}
+                            </Input>
                         </div>
-                        <div className="mb-6">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                                Password
-                            </label>
-                            <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                                id="password" type="password" name="password" placeholder="Password" value={values.password} onChange={handleChange} required/>
+
+                        <div className={"mb-4"}>
+                            <Input id={"password"} type={"password"} value={values.password} onChange={handleChange}
+                                   autocomplete={"current-password"}>
+                                {t("password")}
+                            </Input>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit">
-                                Login
-                            </button>
-                            <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                               href="#">
-                                Forgot Password?
-                            </a>
+
+                        <Button type={"submit"} disabled={isSubmitting}>{t("login")}</Button>
+
+                        <div className={"flex mt-1"}>
+                            <Link href={"/register"}>
+                                <a className={"text-xs mt-2 text-blue-500 hover:underline"}>{t("need-account")}</a>
+                            </Link>
                         </div>
                     </form>)}
             </Formik>

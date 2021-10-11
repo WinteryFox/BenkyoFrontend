@@ -3,6 +3,8 @@
   "email": "Email",
   "password": "Password",
   "login": "Login",
+  "welcome-back": "Welcome back!",
+  "meet-again": "We meet again",
   "verify-password": "Verify password",
   "register": "Register",
   "account-creation": "Account creation",
@@ -11,5 +13,10 @@
   "password-rule-1": "Must be at least 8 characters long.",
   "password-rule-2": "Must contain lower and upper case letters.",
   "password-rule-3": "Must contain at least 1 symbol.",
-  "password-rule-4": "Must contain at least 1 number."
+  "password-rule-4": "Must contain at least 1 number.",
+  "required": "Required.",
+  "invalid-email": "Invalid email.",
+  "must-match": "Passwords don't match.",
+  "invalid-username": "Must be between 2 and 32 characters.",
+  "email-registered": "Email is already registered."
 }
