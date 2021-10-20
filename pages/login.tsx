@@ -1,4 +1,4 @@
-import {Formik} from "formik";
+import {Formik, FormikErrors} from "formik";
 import UserPool from "../src/UserPool";
 import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
@@ -7,6 +7,9 @@ import {useTranslation} from "next-i18next";
 import Input from "../components/input";
 import Button from "../components/button";
 import Link from "next/link";
+import Head from "next/head";
+import {useRouter} from "next/router";
+import background from "../images/cherry_blossom.svg";
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -16,40 +19,77 @@ export async function getStaticProps({locale}: any) {
     };
 }
 
+interface FormValues {
+    email: string
+    password: string
+}
+
 export default function Login() {
+    const router = useRouter()
     const {t} = useTranslation()
+
+    const initialValues: FormValues = {
+        email: "",
+        password: ""
+    }
 
     return (
         <div className={"flex items-center justify-center w-full h-full"}>
-            <Image src={"/cherry_blossom.svg"} alt={"background"} layout={"fill"} objectFit={"cover"} priority/>
+            <Head>
+                <title>Benkyo | {t("login")}</title>
+            </Head>
+
+            <Image src={background} alt={"background"} layout={"fill"} objectFit={"cover"} priority/>
             <Formik
-                onSubmit={(values, {setSubmitting}) => {
+                onSubmit={(values, {setSubmitting, setErrors}) => {
                     const user = new CognitoUser({
                         Username: values.email,
                         Pool: UserPool
                     })
 
-                    const authDetails = new AuthenticationDetails({
-                        Username: values.email,
-                        Password: values.password
-                    })
+                    user.authenticateUser(
+                        new AuthenticationDetails({
+                            Username: values.email,
+                            Password: values.password
+                        }),
+                        {
+                            onSuccess: async () => {
+                                await router.push("/")
+                            },
+                            onFailure: (err: Error) => {
+                                const errors: FormikErrors<FormValues> = {}
+                                if (err.name == "NotAuthorizedException") {
+                                    errors.email = t("invalid-credentials")
+                                    errors.password = t("invalid-credentials")
+                                } else if (err.name == "UserNotConfirmedException") {
+                                    errors.email = t("verify-email")
+                                } else {
+                                    console.error(err)
+                                    errors.email = t("unknown-error")
+                                }
 
-                    user.authenticateUser(authDetails, {
-                        onSuccess: (data) => {
-                            console.log(data)
-                            setSubmitting(false)
-                        },
-                        onFailure: (err) => {
-                            console.error(err)
-                            setSubmitting(false)
-                        },
-                        newPasswordRequired: (data) => {
-                            console.log(data)
-                            setSubmitting(false)
+                                setErrors(errors)
+                                setSubmitting(false)
+                            },
+                            newPasswordRequired: (data) => {
+                                console.log(data)
+                                setSubmitting(false)
+                            }
                         }
-                    })
+                    )
                 }}
-                initialValues={{email: '', password: ''}}>
+                initialValues={initialValues}
+                validate={(values: FormValues) => {
+                    const errors: FormikErrors<FormValues> = {}
+
+                    if (!values.email)
+                        errors.email = t("required")
+
+                    if (!values.password)
+                        errors.password = t("required")
+
+                    return errors
+                }}>
                 {({
                       touched,
                       errors,
@@ -64,15 +104,22 @@ export default function Login() {
                         <h4 className={"flex text-sm mb-4 text-gray-500"}>{t("meet-again")}</h4>
 
                         <div className={"mb-4"}>
-                            <Input id={"email"} value={values.email} onChange={handleChange} autocomplete={"username"}>
-                                {t("email")}
+                            <Input id={"email"} value={values.email} onChange={handleChange} autocomplete={"username"}
+                                   error={!!errors.email && touched.email}>
+                                {t("email")}*
+                                <span className={"ml-1 text-xs"}>
+                                    {errors.email && touched.email && errors.email}
+                                </span>
                             </Input>
                         </div>
 
                         <div className={"mb-4"}>
                             <Input id={"password"} type={"password"} value={values.password} onChange={handleChange}
-                                   autocomplete={"current-password"}>
-                                {t("password")}
+                                   autocomplete={"current-password"} error={!!errors.password && touched.password}>
+                                {t("password")}*
+                                <span className={"ml-1 text-xs"}>
+                                    {errors.password && touched.password && errors.password}
+                                </span>
                             </Input>
                         </div>
 

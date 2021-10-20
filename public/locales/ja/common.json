@@ -18,5 +18,9 @@
   "invalid-email": "メールアドレスが正しくありません。",
   "must-match": "パスワードが間違っています。",
   "invalid-username": "2字以上32字以下の文字を入力してください。",
-  "email-registered": "メールは既に登録されています。"
+  "email-registered": "メールは既に登録されています。",
+  "invalid-credentials": "ログインまたはパスワードが無効です。",
+  "verify-email": "アカウントを有効にするためにメールを確認してください。",
+  "close-window": "このページを閉じることができます。",
+  "unknown-error": "不明なエラーが発生しましたので、後でもう一度試してください。"
 }
