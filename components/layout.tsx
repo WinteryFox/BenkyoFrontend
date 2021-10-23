@@ -1,11 +1,11 @@
 import Navbar from "./navbar";
-import React from "react";
+import React, {ReactNode} from "react";
 
-export default function Layout({children}: HTMLElement) {
+export default function Layout(props: {children: ReactNode}) {
     return (
-        <>
+        <div className={"flex h-screen flex-col"}>
             <Navbar/>
-            <main>{children}</main>
-        </>
+            <main className={"h-full"}>{props.children}</main>
+        </div>
     )
 }
