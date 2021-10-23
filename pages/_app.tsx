@@ -5,7 +5,11 @@ import {appWithTranslation} from "next-i18next";
 import {Component} from "react";
 import nextI18NextConfig from '../next-i18next.config.js';
 import {Provider} from "react-redux";
-import store from "../src/UserStore";
+import store, {set} from "../src/UserStore";
+import {getSelf} from "../src/User";
+
+getSelf().then((user) => store.dispatch(set(user)))
+    .catch(() => {})
 
 function Benkyo({Component, pageProps}: AppProps) {
     return (
