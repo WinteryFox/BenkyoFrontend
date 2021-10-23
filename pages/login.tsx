@@ -10,6 +10,8 @@ import Link from "next/link";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import background from "../images/cherry_blossom.svg";
+import {set, useAppDispatch} from "../src/UserStore";
+import {getSelf} from "../src/User";
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -27,6 +29,7 @@ interface FormValues {
 export default function Login() {
     const router = useRouter()
     const {t} = useTranslation()
+    const dispatch = useAppDispatch()
 
     const initialValues: FormValues = {
         email: "",
@@ -54,6 +57,8 @@ export default function Login() {
                         }),
                         {
                             onSuccess: async () => {
+                                const user = await getSelf()
+                                dispatch(set(user))
                                 await router.push("/")
                             },
                             onFailure: (err: Error) => {

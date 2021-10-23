@@ -3,17 +3,13 @@ import Link from 'next/link'
 import Button from "./button";
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
-import store from "../src/UserStore";
-import {useAppDispatch} from "../src/UserStore";
+import {RootState} from "../src/UserStore";
+import {useSelector} from "react-redux";
 
 export default function Navbar() {
     const {t} = useTranslation()
     const router = useRouter()
-    const dispatch = useAppDispatch()
-
-    dispatch({
-        type: "set"
-    })
+    const user = useSelector((state: RootState) => state.userState.user)
 
     return (
         <nav
@@ -23,13 +19,12 @@ export default function Navbar() {
                     <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
                 </a>
             </Link>
-
-            {store.getState().userState.user == null ?
+            {user == null ?
                 <Button onClick={() => router.push("/login")}>
                     {t("login")}
                 </Button> :
                 <div>
-                    <span>{store.getState().userState.user?.username}</span>
+                    <span>{user.username}</span>
                 </div>
             }
         </nav>
