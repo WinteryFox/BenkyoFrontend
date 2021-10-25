@@ -5,7 +5,7 @@ import {useTranslation} from "next-i18next";
 export async function getStaticProps({locale}: any) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common', 'footer'])),
+            ...(await serverSideTranslations(locale)),
         },
     };
 }
@@ -14,7 +14,7 @@ export default function Home() {
     const {t} = useTranslation()
 
     return (
-        <div>
+        <div className={"h-20"}>
             <Head>
                 <title>Benkyo</title>
             </Head>

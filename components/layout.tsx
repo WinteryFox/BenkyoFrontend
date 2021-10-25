@@ -3,7 +3,7 @@ import React, {ReactNode} from "react";
 
 export default function Layout(props: {children: ReactNode}) {
     return (
-        <div className={"flex h-screen flex-col"}>
+        <div className={"flex flex-col h-screen"}>
             <Navbar/>
             <main className={"h-full"}>{props.children}</main>
         </div>

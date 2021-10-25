@@ -11,11 +11,13 @@ import {useRouter} from "next/router";
 import {useState} from "react";
 import Head from "next/head";
 import background from "../images/cherry_blossom.svg";
+import {useSelector} from "react-redux";
+import {RootState} from "../src/UserStore";
 
 export async function getStaticProps({locale}: any) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common', 'footer'])),
+            ...(await serverSideTranslations(locale)),
         },
     };
 }
@@ -28,8 +30,16 @@ interface FormValues {
 }
 
 export default function Register() {
-    const {t} = useTranslation()
     const router = useRouter()
+    useSelector((state: RootState) => {
+        if (state.userState.user != null)
+            router.push("/").then(() => {
+            })
+
+        return null
+    })
+
+    const {t} = useTranslation()
     const [state, changeState] = useState<boolean>(false)
 
     const initialValues: FormValues = {

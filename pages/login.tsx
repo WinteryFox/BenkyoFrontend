@@ -10,13 +10,14 @@ import Link from "next/link";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import background from "../images/cherry_blossom.svg";
-import {set, useAppDispatch} from "../src/UserStore";
+import {RootState, set, useAppDispatch} from "../src/UserStore";
 import {getSelf} from "../src/User";
+import {useSelector} from "react-redux";
 
 export async function getStaticProps({locale}: any) {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common', 'footer'])),
+            ...(await serverSideTranslations(locale)),
         },
     };
 }
@@ -28,6 +29,14 @@ interface FormValues {
 
 export default function Login() {
     const router = useRouter()
+    useSelector((state: RootState) => {
+        if (state.userState.user != null)
+            router.push("/").then(() => {
+            })
+
+        return null
+    })
+
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
 
