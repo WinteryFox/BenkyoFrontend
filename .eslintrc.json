@@ -1,3 +1,13 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "env": {
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  }
 }

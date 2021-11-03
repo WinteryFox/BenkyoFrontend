@@ -8,8 +8,10 @@ export default function Button(props: {
 }) {
     return (
         <button
-            className={"disabled:bg-gray-300 disabled:cursor-not-allowed bg-primary-500 hover:bg-primary-700 transition-colors duration-150 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"}
+            className="disabled:bg-gray-300 disabled:cursor-not-allowed bg-primary-500 hover:bg-primary-700
+            transition-colors duration-150 text-white font-bold py-2 px-4 rounded"
             type={props.type}
+            tabIndex={0}
             onClick={event => props.onClick ? props.onClick(event) : null}
             disabled={props.disabled}>
             {props.children}

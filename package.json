@@ -9,6 +9,7 @@
     "@reduxjs/toolkit": "^1.6.2",
     "amazon-cognito-identity-js": "^5.2.0",
     "amazon-cognito-identity-js-typescript": "^1.22.0",
+    "axios": "^0.24.0",
     "formik": "^2.2.9",
     "next": "11.1.2",
     "next-i18next": "^8.8.0",

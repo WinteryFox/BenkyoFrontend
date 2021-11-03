@@ -19,14 +19,13 @@ export default function Navbar() {
                     <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
                 </a>
             </Link>
-            {user == null ?
-                <Button onClick={() => router.push("/login")}>
-                    {t("login")}
-                </Button> :
-                <div>
-                    <span>{user.username}</span>
-                </div>
-            }
+            <div>
+                {user == null ?
+                    <Button onClick={() => router.push("/login")}>
+                        {t("login")}
+                    </Button> :
+                    <span>{user.username}</span>}
+            </div>
         </nav>
     )
 }
