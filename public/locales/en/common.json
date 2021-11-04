@@ -22,5 +22,6 @@
   "invalid-credentials": "Incorrect username or password.",
   "verify-email": "Please check your email to activate your account",
   "close-window": "You may close this page now.",
-  "unknown-error": "An unknown error occurred, try again later."
+  "unknown-error": "An unknown error occurred, try again later.",
+  "start-deck": "Start"
 }

@@ -10,6 +10,7 @@
     "amazon-cognito-identity-js": "^5.2.0",
     "amazon-cognito-identity-js-typescript": "^1.22.0",
     "axios": "^0.24.0",
+    "flagpack": "^1.0.5",
     "formik": "^2.2.9",
     "next": "11.1.2",
     "next-i18next": "^8.8.0",
