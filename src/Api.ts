@@ -6,8 +6,9 @@ const client = axios.create({
     baseURL: baseUrl
 })
 
-export interface Deck {
+export interface DeckData {
     id: bigint,
+    verified: boolean,
     author: bigint,
     createdAt: string,
     name: string,
@@ -17,20 +18,20 @@ export interface Deck {
     imageHash: string
 }
 
-export interface Card {
+export interface CardData {
     id: string
     question: string,
     answers: Array<string>
 }
 
-export async function getDecks(): Promise<Array<Deck>> {
+export async function getDecks(): Promise<Array<DeckData>> {
     return (await client.get("/decks")).data
 }
 
-export async function getDeck(id: string): Promise<Deck> {
+export async function getDeck(id: string): Promise<DeckData> {
     return (await client.get(`/decks/${id}`)).data
 }
 
-export async function getCards(id: string): Promise<Array<Card>> {
+export async function getCards(id: string): Promise<Array<CardData>> {
     return (await client.get(`/decks/${id}/cards`)).data
 }

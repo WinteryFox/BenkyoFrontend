@@ -8,7 +8,8 @@ module.exports = {
         primary: {
           500: "#8e8ec1",
           700: "#7171ad"
-        }
+        },
+        secondary: "#ffd9ec"
       }
     }
   },

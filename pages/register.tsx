@@ -57,7 +57,7 @@ export default function Register() {
                 </Head>
 
                 <Image src={background} alt={"background"} layout={"fill"} objectFit={"cover"} priority/>
-                <div className={"z-10 rounded max-w-lg w-full p-8 bg-white shadow"}>
+                <div className={"z-10 rounded-3xl max-w-lg w-full p-8 bg-white shadow"}>
                     <div className={"flex justify-center mb-4"}>
                         <Image src={"/paper_plane.svg"} alt={"Paper plane"} width={256} height={256}/>
                     </div>
@@ -148,7 +148,7 @@ export default function Register() {
                           isSubmitting
                       }) => (
                         <form onSubmit={handleSubmit}
-                              className={"z-10 flex flex-col rounded max-w-lg w-full p-8 bg-white shadow"}>
+                              className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow"}>
                             <h3 className={"flex justify-center text-2xl font-bold mb-4"}>{t("account-creation")}</h3>
 
                             <div className="mb-4">

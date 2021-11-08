@@ -23,5 +23,8 @@
   "verify-email": "Please check your email to activate your account",
   "close-window": "You may close this page now.",
   "unknown-error": "An unknown error occurred, try again later.",
-  "start-deck": "Start"
+  "start-deck": "Start studying",
+  "created-at": "Created {{date}}",
+  "word-list": "Cards ({{count}})",
+  "error": "An unknown error occurred, please try again later."
 }

@@ -113,7 +113,7 @@ export default function Login() {
                       isSubmitting
                   }) => (
                     <form onSubmit={handleSubmit}
-                          className={"z-10 flex flex-col rounded max-w-lg w-full p-8 bg-white shadow"}>
+                          className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow"}>
                         <h3 className={"flex text-2xl font-bold mb-1"}>{t("welcome-back")}</h3>
                         <h4 className={"flex text-sm mb-4 text-gray-500"}>{t("meet-again")}</h4>
 

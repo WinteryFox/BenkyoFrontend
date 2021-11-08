@@ -1,32 +1,38 @@
-import Head from 'next/head'
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
-import {Deck, getDecks} from "../src/Api";
+import {DeckData, getDecks} from "../src/Api";
 import DeckPreview from "../components/DeckPreview";
+import {GetStaticProps} from "next";
 
-export async function getStaticProps({locale}: any) {
-    const decks = await getDecks()
+interface Props {
+    decks: Array<DeckData>
+}
 
-    return {
-        props: {
-            ...(await serverSideTranslations(locale)),
-            decks
-        },
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+    try {
+        const decks = await getDecks()
+
+        return {
+            props: {
+                ...(await serverSideTranslations(context.locale!)),
+                decks
+            }
+        }
+    } catch (error) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: "/error"
+            }
+        }
     }
 }
 
-export default function Home(props: {
-    decks: Array<Deck>
-}) {
+export default function Home(props: Props) {
     const {t} = useTranslation()
 
     return (
         <div className={"flex flex-wrap justify-center m-10"}>
-            <Head>
-                <title>Benkyo</title>
-                <link rel={"shortcut icon"} type={"image/svg"} href={"/logo.svg"}/>
-            </Head>
-
             {props.decks.map((deck) => (
                 <div key={deck.id.toString()} className={"mr-6 mb-6 w-96"}>
                     <DeckPreview deck={deck}/>

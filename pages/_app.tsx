@@ -7,17 +7,26 @@ import nextI18NextConfig from '../next-i18next.config.js';
 import {Provider} from "react-redux";
 import store, {set} from "../src/UserStore";
 import {getSelf} from "../src/User";
+import Head from "next/head";
 
 getSelf().then((user) => store.dispatch(set(user)))
-    .catch(() => {})
+    .catch(() => {
+    })
 
 function Benkyo({Component, pageProps}: AppProps) {
     return (
-        <Provider store={store}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </Provider>
+        <>
+            <Head>
+                <title>Benkyo</title>
+                <link rel={"shortcut icon"} type={"image/svg"} href={"/logo.svg"}/>
+            </Head>
+
+            <Provider store={store}>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </Provider>
+        </>
     )
 }
 
