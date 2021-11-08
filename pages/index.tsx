@@ -9,21 +9,12 @@ interface Props {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-    try {
-        const decks = await getDecks()
+    const decks = await getDecks()
 
-        return {
-            props: {
-                ...(await serverSideTranslations(context.locale!)),
-                decks
-            }
-        }
-    } catch (error) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/error"
-            }
+    return {
+        props: {
+            ...(await serverSideTranslations(context.locale!)),
+            decks
         }
     }
 }

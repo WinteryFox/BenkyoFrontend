@@ -15,28 +15,19 @@ interface Props {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-    try {
-        const deck = await getDeck(context.params!["id"]![0])
-        const cards = await getCards(context.params!["id"]![0])
+    const deck = await getDeck(context.params!["id"]![0])
+    const cards = await getCards(context.params!["id"]![0])
 
-        if (!deck)
-            return {
-                notFound: true
-            }
-
+    if (!deck)
         return {
-            props: {
-                ...(await serverSideTranslations(context.locale!)),
-                deck,
-                cards
-            }
+            notFound: true
         }
-    } catch (error) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/error"
-            }
+
+    return {
+        props: {
+            ...(await serverSideTranslations(context.locale!)),
+            deck,
+            cards
         }
     }
 }
