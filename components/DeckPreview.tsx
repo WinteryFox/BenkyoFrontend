@@ -1,10 +1,10 @@
 import Link from "next/link";
-import {Deck} from "../src/Api";
+import {DeckData} from "../src/Api";
 import Image from "next/image";
 import verified from "../resources/verified.svg";
 
 export default function DeckPreview(props: {
-    deck: Deck
+    deck: DeckData
 }) {
     return (
         <Link href={`/decks/${props.deck.id}`}>
