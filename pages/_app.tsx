@@ -8,10 +8,13 @@ import {Provider} from "react-redux";
 import store, {set} from "../src/UserStore";
 import {getSelf} from "../src/User";
 import Head from "next/head";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 getSelf().then((user) => store.dispatch(set(user)))
     .catch(() => {
     })
+
+const queryClient = new QueryClient()
 
 function Benkyo({Component, pageProps}: AppProps) {
     return (
@@ -22,9 +25,11 @@ function Benkyo({Component, pageProps}: AppProps) {
             </Head>
 
             <Provider store={store}>
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
+                <QueryClientProvider client={queryClient}>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </QueryClientProvider>
             </Provider>
         </>
     )

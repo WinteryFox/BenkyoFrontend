@@ -25,7 +25,7 @@ export default function Navbar() {
                     <Button onClick={() => router.push("/login")}>
                         {t("login")}
                     </Button> :
-                    <span>{user.username}</span>}
+                    <div>{user.username}</div>}
             </div>
         </nav>
     )
