@@ -8,14 +8,14 @@ const client = axios.create({
 
 export interface DeckData {
     id: bigint,
-    verified: boolean,
     author: bigint,
-    createdAt: string,
+    isPrivate: boolean,
     name: string,
     description: string,
     sourceLanguage: string,
     targetLanguage: string,
-    imageHash: string
+    createdAt: string,
+    imageHash: string | null
 }
 
 export interface CardData {

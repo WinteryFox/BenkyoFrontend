@@ -1,7 +1,6 @@
 import {CardData, DeckData, getCards, getDeck} from "../../src/Api";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
-import verified from "resources/verified.svg"
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import Flag from "../../components/Flag";
 import Button from "../../components/button";
@@ -31,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = () => {
     }
 }
 
-export default function Id(props: Props) {
+export default function Id() {
     const {t} = useTranslation()
     const router = useRouter()
     const {id} = router.query
@@ -83,11 +82,6 @@ export default function Id(props: Props) {
 
                                 <div className={"flex text-3xl font-semibold"}>
                                     {data.deck.name}
-
-                                    {data.deck.verified && (
-                                        <i className={"ml-2"} title={"Verified"}>
-                                            <Image src={verified} alt={"Verified"} width={24} height={24}/>
-                                        </i>)}
                                 </div>
                             </div>
                         </div>
