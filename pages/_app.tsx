@@ -1,6 +1,6 @@
 import '../styles/globals.sass'
 import type {AppProps} from 'next/app'
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import {appWithTranslation} from "next-i18next";
 import {Component} from "react";
 import nextI18NextConfig from '../next-i18next.config.js';

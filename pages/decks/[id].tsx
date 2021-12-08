@@ -3,7 +3,7 @@ import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import Flag from "../../components/Flag";
-import Button from "../../components/button";
+import Button from "../../components/Button";
 import {useTranslation} from "next-i18next";
 import Card from "../../components/Card";
 import Head from "next/head"
@@ -46,11 +46,11 @@ export default function Id() {
     )
 
     if (isLoading)
-        return 'Loading...'
+        return "Loading..."
     if (error)
-        return 'Oops...'
+        return "Oops..."
     if (!data)
-        return '404'
+        return "404"
 
     function start() {
         alert("This is where a study session would start...")

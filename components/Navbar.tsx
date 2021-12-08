@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Button from "./button";
+import Button from "./Button";
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
 import {RootState} from "../src/UserStore";

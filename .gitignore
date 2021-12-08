@@ -2,6 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/webstorm+all,node,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=webstorm+all,node,react
 
+*.test.*.snap
+
 ### Node ###
 # Logs
 logs

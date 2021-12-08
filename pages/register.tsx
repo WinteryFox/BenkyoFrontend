@@ -2,8 +2,8 @@ import {Formik, FormikErrors} from 'formik';
 import UserPool from '../src/UserPool';
 import {CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import Link from 'next/link';
-import Button from "../components/button";
-import Input from "../components/input";
+import Button from "../components/Button";
+import Input from "../components/Input";
 import Image from "next/image"
 import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
