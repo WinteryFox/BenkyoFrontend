@@ -15,7 +15,8 @@ export interface DeckData {
     sourceLanguage: string,
     targetLanguage: string,
     createdAt: string,
-    imageHash: string | null
+    imageHash: string | null,
+    cards: Array<CardData>
 }
 
 export interface CardData {

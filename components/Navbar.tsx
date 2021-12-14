@@ -1,14 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Button from "./Button";
 import {useTranslation} from "next-i18next";
-import {useRouter} from "next/router";
 import {RootState} from "../src/UserStore";
 import {useSelector} from "react-redux";
 
 export default function Navbar() {
     const {t} = useTranslation()
-    const router = useRouter()
     const user = useSelector((state: RootState) => state.userState.user)
 
     return (
@@ -22,10 +19,16 @@ export default function Navbar() {
             </Link>
             <div>
                 {user == null ?
-                    <Button onClick={() => router.push("/login")}>
-                        {t("login")}
-                    </Button> :
-                    <div>{user.username}</div>}
+                    <Link href={"/login"}>
+                        <a className={"px-5 py-2.5 rounded-full border text-violet-900 bg-pink-200 hover:bg-pink-100 hover:shadow-lg hover:shadow-pink-500/30"}>
+                            {t("login")}
+                        </a>
+                    </Link> :
+                    <Link href={"/profile"}>
+                        <a className={"px-5 py-2.5 rounded-full border"}>
+                            {user.username}
+                        </a>
+                    </Link>}
             </div>
         </nav>
     )

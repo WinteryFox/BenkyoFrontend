@@ -10,7 +10,7 @@ import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useRouter} from "next/router";
 import {useState} from "react";
 import Head from "next/head";
-import background from "../images/cherry_blossom.svg";
+import background from "../resources/images/cherry_blossom.svg";
 import {useSelector} from "react-redux";
 import {RootState} from "../src/UserStore";
 
@@ -190,13 +190,13 @@ export default function Register() {
                                 </Input>
                             </div>
 
-                            <Button type={"submit"} disabled={isSubmitting}>
+                            <Button type={"submit"} disabled={isSubmitting} className={"text-white bg-violet-500 hover:shadow hover:shadow-violet-400 hover:bg-violet-400"}>
                                 {t("register")}
                             </Button>
 
                             <div className={"flex mt-1"}>
                                 <Link href={"/login"}>
-                                    <a className={"text-xs mt-2 text-blue-500 hover:underline"}>{t("have-account")}</a>
+                                    <a className={"text-xs mt-2 text-pink-500 hover:text-pink-400"}>{t("have-account")}</a>
                                 </Link>
                             </div>
                         </form>)}

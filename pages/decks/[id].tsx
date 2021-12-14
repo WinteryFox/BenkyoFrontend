@@ -1,4 +1,4 @@
-import {CardData, DeckData, getCards, getDeck} from "../../src/Api";
+import {CardData, DeckData, getDeck} from "../../src/Api";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
@@ -9,10 +9,11 @@ import Card from "../../components/Card";
 import Head from "next/head"
 import {useQuery} from "react-query";
 import {useRouter} from "next/router";
+import Markdown from "../../components/Markdown";
+import Link from "next/link";
 
 interface Props {
-    deck: DeckData,
-    cards: Array<CardData>
+    deck: DeckData
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -39,8 +40,7 @@ export default function Id() {
         `deck_${id}`,
         async () => {
             return {
-                deck: await getDeck(id![0]),
-                cards: await getCards(id![0])
+                deck: await getDeck(id![0])
             }
         }
     )
@@ -52,10 +52,6 @@ export default function Id() {
     if (!data)
         return "404"
 
-    function start() {
-        alert("This is where a study session would start...")
-    }
-
     return (
         <>
             <Head>
@@ -63,8 +59,8 @@ export default function Id() {
             </Head>
 
             <div className={"w-full h-full flex justify-center"}>
-                <div className={"flex flex-col md:flex-row pt-8 pb-4 px-10 md:w-[1024px]"}>
-                    <div className={"flex md:flex-col md:p-3 pb-3 rounded-xl md:mr-4 flex-shrink-0 items-center"}>
+                <div className={"flex md:flex-row pt-8 pb-4 px-10 md:w-[1024px]"}>
+                    <div className={"flex md:flex-col md:p-3 pb-3 rounded-xl md:mr-4 shrink-0 items-center"}>
                         <Image src={"/logo.svg"} alt={"Deck image"} title={"Deck image"} className={"rounded-2xl"}
                                width={62} height={62}/>
 
@@ -76,32 +72,37 @@ export default function Id() {
                     <div className={"flex flex-col w-full"}>
                         <div className={"flex justify-between items-center"}>
                             <div className={"flex flex-col"}>
-                                <div className={"text-xs text-gray-400"}>
+                                <div className={"text-xs text-gray-400 italic"}>
                                     {t("created-at", {date: new Date(data.deck.createdAt).toLocaleDateString()})}
                                 </div>
 
-                                <div className={"flex text-3xl font-semibold"}>
+                                <div className={"flex text-4xl font-semibold"}>
                                     {data.deck.name}
                                 </div>
                             </div>
                         </div>
 
-                        <p className={"whitespace-pre-wrap"}>
-                            {data.deck.description}
-                        </p>
+                        <div>
+                            <Markdown>
+                                {data.deck.description}
+                            </Markdown>
+                        </div>
 
                         <div className={"w-full mt-2"}>
-                            <Button onClick={start}>
-                                {t("start-deck")}
-                            </Button>
+                            <Link href={`/study/${id}`} passHref>
+                                <Button
+                                    className={"text-white bg-violet-600 hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-500/30"}>
+                                    {t("start-deck")}
+                                </Button>
+                            </Link>
                         </div>
 
                         <div className={"flex flex-col w-full mb-3 mt-4"}>
                             <p className={"flex text-lg font-semibold"}>
-                                {t("word-list", {count: data.cards.length})}
+                                {t("word-list", {count: data.deck.cards.length})}
                             </p>
                             <div className={"flex flex-col items-center w-full"}>
-                                {data.cards.map((card: CardData) => (
+                                {data.deck.cards.map((card: CardData) => (
                                     <div className={"w-full my-1.5"} key={card.id}>
                                         <Card card={card}/>
                                     </div>

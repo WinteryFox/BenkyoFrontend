@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import Link from "next/link";
 import Head from "next/head";
 import {useRouter} from "next/router";
-import background from "../images/cherry_blossom.svg";
+import background from "../resources/images/cherry_blossom.svg";
 import {RootState, set, useAppDispatch} from "../src/UserStore";
 import {getSelf} from "../src/User";
 import {useSelector} from "react-redux";
@@ -119,7 +119,7 @@ export default function Login() {
 
                         <div className={"mb-4"}>
                             <Input id={"email"} value={values.email} onChange={handleChange} autocomplete={"username"}
-                                   error={!!errors.email && touched.email}>
+                                   error={!!errors.email && touched.email} type={"email"}>
                                 {t("email")}*
                                 <span className={"ml-1 text-xs"}>
                                     {errors.email && touched.email && errors.email}
@@ -137,11 +137,13 @@ export default function Login() {
                             </Input>
                         </div>
 
-                        <Button type={"submit"} disabled={isSubmitting}>{t("login")}</Button>
+                        <Button type={"submit"} disabled={isSubmitting} className={"text-white bg-violet-500 hover:shadow hover:shadow-violet-400 hover:bg-violet-400"}>
+                            {t("login")}
+                        </Button>
 
                         <div className={"flex mt-1"}>
                             <Link href={"/register"}>
-                                <a className={"text-xs mt-2 text-blue-500 hover:underline"}>{t("need-account")}</a>
+                                <a className={"text-xs mt-2 text-pink-500 hover:text-pink-400"}>{t("need-account")}</a>
                             </Link>
                         </div>
                     </form>)}
