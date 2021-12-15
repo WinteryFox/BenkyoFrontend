@@ -1,4 +1,4 @@
-import {CardData, DeckData, getDeck} from "../../src/Api";
+import {CardData, DeckData, getCards, getDeck} from "../../src/Api";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
@@ -13,7 +13,8 @@ import Markdown from "../../components/Markdown";
 import Link from "next/link";
 
 interface Props {
-    deck: DeckData
+    deck: DeckData,
+    cards: Array<CardData>
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -40,7 +41,8 @@ export default function Id() {
         `deck_${id}`,
         async () => {
             return {
-                deck: await getDeck(id![0])
+                deck: await getDeck(id![0]),
+                cards: await getCards(id![0])
             }
         }
     )
@@ -59,12 +61,12 @@ export default function Id() {
             </Head>
 
             <div className={"w-full h-full flex justify-center"}>
-                <div className={"flex md:flex-row pt-8 pb-4 px-10 md:w-[1024px]"}>
-                    <div className={"flex md:flex-col md:p-3 pb-3 rounded-xl md:mr-4 shrink-0 items-center"}>
+                <div className={"flex flex-col md:flex-row pt-8 pb-4 px-10 md:w-[1024px]"}>
+                    <div className={"flex md:flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
                         <Image src={"/logo.svg"} alt={"Deck image"} title={"Deck image"} className={"rounded-2xl"}
-                               width={62} height={62}/>
+                               width={64} height={64}/>
 
-                        <div className={"flex flex-col items-center md:mt-2 ml-4 md:ml-0"}>
+                        <div className={"flex flex-col items-center md:mt-4 ml-4 md:ml-0"}>
                             <Flag code={data.deck.targetLanguage}/>
                         </div>
                     </div>
@@ -99,10 +101,10 @@ export default function Id() {
 
                         <div className={"flex flex-col w-full mb-3 mt-4"}>
                             <p className={"flex text-lg font-semibold"}>
-                                {t("word-list", {count: data.deck.cards.length})}
+                                {t("word-list", {count: data.cards.length})}
                             </p>
                             <div className={"flex flex-col items-center w-full"}>
-                                {data.deck.cards.map((card: CardData) => (
+                                {data.cards.map((card: CardData) => (
                                     <div className={"w-full my-1.5"} key={card.id}>
                                         <Card card={card}/>
                                     </div>

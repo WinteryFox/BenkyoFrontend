@@ -1,9 +1,17 @@
 import axios from "axios";
+import {Auth} from "aws-amplify"
 
 const baseUrl = "http://localhost:8282/api"
-
 const client = axios.create({
     baseURL: baseUrl
+})
+
+client.interceptors.request.use(async (config) => {
+    const session = await Auth.currentSession()
+    config.headers = {
+        "Authorization": `Bearer ${session.getAccessToken().getJwtToken()}`
+    }
+    return config
 })
 
 export interface DeckData {
@@ -15,8 +23,7 @@ export interface DeckData {
     sourceLanguage: string,
     targetLanguage: string,
     createdAt: string,
-    imageHash: string | null,
-    cards: Array<CardData>
+    imageHash: string | null
 }
 
 export interface CardData {
@@ -33,6 +40,10 @@ export async function getDeck(id: string): Promise<DeckData> {
     return (await client.get(`/decks/${id}`)).data
 }
 
-export async function getCards(id: string): Promise<Array<CardData>> {
-    return (await client.get(`/decks/${id}/cards`)).data
+export async function getCards(deck: string): Promise<Array<CardData>> {
+    return (await client.get(`/decks/${deck}/cards`)).data
+}
+
+export async function getNewCards(deck: string): Promise<Array<CardData>> {
+    return (await client.get(`/study/${deck}`)).data
 }

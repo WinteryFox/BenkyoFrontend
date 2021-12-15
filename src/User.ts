@@ -1,5 +1,5 @@
-import UserPool from "./UserPool";
-import {CognitoUserSession} from "amazon-cognito-identity-js";
+import {Auth} from "aws-amplify"
+import {CognitoUser} from "amazon-cognito-identity-js";
 
 export default interface User {
     id: string
@@ -7,30 +7,23 @@ export default interface User {
     username: string
 }
 
-export const getSelf = () => new Promise<User>((resolve, reject) => {
-    const cognitoUser = UserPool.getCurrentUser()
-    if (!cognitoUser)
-        return reject("No current user.")
+interface CognitoUserAttributes {
+    sub: string
+    email: string
+    email_verified: string
+    preferred_username: string
+}
 
-    cognitoUser.getSession(((err: Error | null, session: CognitoUserSession | null) => {
-        if (err || !session) {
-            return reject(err)
-        }
+export const getSelf = () => new Promise<User>(async (resolve, reject) => {
+    try {
+        const user: CognitoUser & {attributes: CognitoUserAttributes} = await Auth.currentAuthenticatedUser()
 
-        if (!session.isValid()) {
-            return reject("Session is not valid.")
-        }
-
-        cognitoUser.getUserAttributes(((err1, result) => {
-            if (err1 || !result) {
-                return reject(err1)
-            }
-
-            return resolve({
-                id: cognitoUser.getUsername(),
-                email: result.find((value) => value.Name == "email")!.Value,
-                username: result.find((value) => value.Name == "preferred_username")!.Value
-            })
-        }))
-    }))
+        return resolve({
+            id: user.attributes.sub,
+            email: user.attributes.email,
+            username: user.attributes.preferred_username
+        })
+    } catch (e) {
+        return reject(e)
+    }
 })

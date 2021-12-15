@@ -1,6 +1,4 @@
 import {Formik, FormikErrors} from "formik";
-import UserPool from "../src/UserPool";
-import {AuthenticationDetails, CognitoUser} from "amazon-cognito-identity-js";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import {useTranslation} from "next-i18next";
@@ -11,8 +9,9 @@ import Head from "next/head";
 import {useRouter} from "next/router";
 import background from "../resources/images/cherry_blossom.svg";
 import {RootState, set, useAppDispatch} from "../src/UserStore";
-import {getSelf} from "../src/User";
 import {useSelector} from "react-redux";
+import {Auth} from "aws-amplify"
+import {getSelf} from "../src/User";
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -53,44 +52,31 @@ export default function Login() {
 
             <Image src={background} alt={"background"} layout={"fill"} objectFit={"cover"} priority/>
             <Formik
-                onSubmit={(values, {setSubmitting, setErrors}) => {
-                    const user = new CognitoUser({
-                        Username: values.email,
-                        Pool: UserPool
-                    })
-
-                    user.authenticateUser(
-                        new AuthenticationDetails({
-                            Username: values.email,
-                            Password: values.password
-                        }),
-                        {
-                            onSuccess: async () => {
-                                const user = await getSelf()
-                                dispatch(set(user))
-                                await router.push("/")
-                            },
-                            onFailure: (err: Error) => {
-                                const errors: FormikErrors<FormValues> = {}
-                                if (err.name == "NotAuthorizedException") {
-                                    errors.email = t("invalid-credentials")
-                                    errors.password = t("invalid-credentials")
-                                } else if (err.name == "UserNotConfirmedException") {
-                                    errors.email = t("verify-email")
-                                } else {
-                                    console.error(err)
-                                    errors.email = t("unknown-error")
-                                }
-
-                                setErrors(errors)
-                                setSubmitting(false)
-                            },
-                            newPasswordRequired: (data) => {
-                                console.log(data)
-                                setSubmitting(false)
+                onSubmit={async (values, {setSubmitting, setErrors}) => {
+                    try {
+                        await Auth.signIn(values.email, values.password)
+                        const user = await getSelf()
+                        dispatch(set(user))
+                        await router.push("/")
+                    } catch (e: any) {
+                        const errors: FormikErrors<FormValues> = {}
+                        if ("code" in e) {
+                            if (e.name == "NotAuthorizedException") {
+                                errors.email = t("invalid-credentials")
+                                errors.password = t("invalid-credentials")
+                            } else if (e.name == "UserNotConfirmedException") {
+                                errors.email = t("verify-email")
+                            } else {
+                                console.error(e)
+                                errors.email = t("unknown-error")
                             }
+                        } else {
+                            errors.email = t("unknown-error")
                         }
-                    )
+
+                        setErrors(errors)
+                        setSubmitting(false)
+                    }
                 }}
                 initialValues={initialValues}
                 validate={(values: FormValues) => {

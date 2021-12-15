@@ -9,10 +9,15 @@ import store, {set} from "../src/UserStore";
 import {getSelf} from "../src/User";
 import Head from "next/head";
 import {QueryClient, QueryClientProvider} from "react-query";
+import Amplify from "aws-amplify";
 
-getSelf().then((user) => store.dispatch(set(user)))
-    .catch(() => {
-    })
+Amplify.configure({
+    Auth: {
+        region: "us-east-2",
+        userPoolId: "us-east-2_3MQKXi2A6",
+        userPoolWebClientId: "25iod9nafoc175klk29s9qjvjs"
+    }
+})
 
 const queryClient = new QueryClient()
 
