@@ -9,7 +9,7 @@ export default function Button(props: {
 }) {
     return (
         <button
-            className={`${props.className} disabled:cursor-not-allowed transition-all duration-150 rounded-full px-[24px] h-[40px] w-full`}
+            className={`btn ${props.className}`}
             type={props.type}
             tabIndex={0}
             onClick={event => props.onClick ? props.onClick(event) : null}

@@ -4,9 +4,10 @@ import Head from "next/head";
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
 import {useQuery} from "react-query";
-import {CardData, DeckData, getCards, getDeck, getNewCards} from "../../src/Api";
+import {CardData, DeckData, getDeck, getNewCards} from "../../src/Api";
 import Input from "../../components/Input";
 import {useState} from "react";
+import DefaultErrorPage from "next/error";
 
 export const getStaticProps: GetStaticProps = async (context) => {
     return {
@@ -24,8 +25,8 @@ export const getStaticPaths: GetStaticPaths = () => {
 }
 
 interface Props {
-    deck: DeckData,
-    cards: Array<CardData>
+    deck: DeckData | null,
+    cards: Array<CardData> | null
 }
 
 export default function Study() {
@@ -40,12 +41,14 @@ export default function Study() {
     const {isLoading, error, data} = useQuery<Props>(
         `study_${id}`,
         async () => {
-            const deck = await getDeck(id![0])
-            const cards = await getNewCards(id![0])
+            const deck = await getDeck(id! as string)
+            const cards = await getNewCards(id! as string)
 
-            setCurrentCard(cards[0])
-            cards.shift()
-            setCardsLeft(cards)
+            if (deck && cards) {
+                setCurrentCard(cards[0])
+                cards.shift()
+                setCardsLeft(cards)
+            }
             return {
                 deck,
                 cards
@@ -57,11 +60,11 @@ export default function Study() {
         return "Loading..."
     if (error)
         return "Oops..."
-    if (!data)
-        return "404"
+    if (!data || !data.deck || !data.cards)
+        return <DefaultErrorPage statusCode={404}/>
 
     if (data.cards.length == 0)
-        router.push("/").then()
+        router.push("/").then() // TODO: Show session stats
 
     if (!currentCard || !cardsLeft)
         return "Unknown error..."

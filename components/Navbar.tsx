@@ -1,18 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import {useTranslation} from "next-i18next";
-import store, {RootState, set} from "../src/UserStore";
+import {RootState} from "../src/UserStore";
 import {useSelector} from "react-redux";
-import {getSelf} from "../src/User";
-import {useEffect} from "react";
 
 export default function Navbar() {
     const {t} = useTranslation()
     const user = useSelector((state: RootState) => state.userState.user)
-
-    useEffect(() => {
-        getSelf().then((user) => store.dispatch(set(user))).catch(() => {})
-    })
 
     return (
         <nav

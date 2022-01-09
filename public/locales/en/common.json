@@ -3,6 +3,7 @@
   "email": "Email",
   "password": "Password",
   "login": "Login",
+  "logout": "Logout",
   "welcome-back": "Welcome back!",
   "meet-again": "We meet again",
   "verify-password": "Verify password",
@@ -26,5 +27,12 @@
   "start-deck": "Start studying",
   "created-at": "Created {{date}}",
   "word-list": "Cards ({{count}})",
-  "error": "An unknown error occurred, please try again later."
+  "error": "An unknown error occurred, please try again later.",
+  "create-deck": "Create deck",
+  "private": "Private",
+  "name": "Name",
+  "short-description": "Summary",
+  "description": "Long Description",
+  "source-language": "This course is aimed at people who speak",
+  "target-language": "And want to learn"
 }

@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "~flagpack/dist/flagpack.css";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
     @font-face {
         font-family: Whitney;
@@ -53,19 +57,25 @@
     @font-face {
         font-family: Whitney;
         font-weight: 700;
-        src: url(/fonts/whitneyboldregular.woff) format("opentype")
+        src: url(/fonts/whitneyboldregular.woff) format("woff")
     }
     @font-face {
         font-family: Whitney;
         font-style: italic;
         font-weight: 700;
-        src: url(/fonts/whitneybold.otf) format("woff")
+        src: url(/fonts/whitneybold.otf) format("opentype")
     }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer components {
+    .btn {
+        @apply disabled:cursor-not-allowed transition-all duration-150 rounded-full px-[24px] h-[40px] w-full disabled:bg-gray-400 disabled:hover:bg-gray-400
+    }
+
+    .btn-violet {
+        @apply btn text-white bg-violet-500 hover:shadow hover:shadow-violet-400 hover:bg-violet-400
+    }
+}
 
 body {
     text-rendering: optimizeLegibility;

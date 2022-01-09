@@ -14,7 +14,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        set: (state, action: PayloadAction<User>) => Object.assign({}, state, {user: action.payload})
+        set: (state, action: PayloadAction<User | null>) => Object.assign({}, state, {user: action.payload})
     }
 })
 

@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import type {AppProps} from 'next/app'
 import Layout from "../components/Layout"
 import {appWithTranslation} from "next-i18next";
-import {Component} from "react";
+import {Component, useEffect} from "react";
 import nextI18NextConfig from '../next-i18next.config.js';
 import {Provider} from "react-redux";
 import store, {set} from "../src/UserStore";
@@ -22,6 +22,10 @@ Amplify.configure({
 const queryClient = new QueryClient()
 
 function Benkyo({Component, pageProps}: AppProps) {
+    useEffect(() => {
+        getSelf().then((user) => store.dispatch(set(user))).catch(() => {})
+    })
+
     return (
         <>
             <Head>
@@ -30,10 +34,9 @@ function Benkyo({Component, pageProps}: AppProps) {
 
                 <meta name={"viewport"} content={"width=device-width, initial-scale=1.0, user-scalable=no"}/>
 
+                <meta property={"og:title"} content={"Benkyo"}/>
                 {/*TODO: Localize and edit descriptions (based on the page too)*/}
                 <meta name={"description"} content={"Benkyo is a platform for learning languages."}/>
-
-                <meta property={"og:title"} content={"Benkyo"}/>
                 <meta property={"og:description"} content={"Benkyo is a platform for learning languages."}/>
                 <meta property={"og:site_name"} content={"Benkyo"}/>
                 <meta property={"og:url"} content={""}/>

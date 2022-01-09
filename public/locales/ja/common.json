@@ -3,6 +3,7 @@
   "email": "メールアドレス",
   "password": "パスワード",
   "login": "ログイン",
+  "logout": "ログアウト",
   "welcome-back": "おかえりなさい！",
   "meet-again": "またお会いしましたね",
   "verify-password": "パスワードもう一回",
@@ -25,6 +26,13 @@
   "unknown-error": "不明なエラーが発生しましたので、後でもう一度試してください。",
   "start-deck": "勉強開始",
   "created-at": "{{date}}に作成",
-  "word-list": "単語数（{{count}}）",
-  "error": "不明なエラーが発生しました、また後で試してください。"
+  "word-list": "カード数（{{count}}）",
+  "error": "不明なエラーが発生しました、また後で試してください。",
+  "create-deck": "作成",
+  "private": "プライベート",
+  "name": "名",
+  "short-description": "要約",
+  "description": "説明",
+  "source-language": "このデックは〇語を母語として話す人と",
+  "target-language": "〇語を話せるようになりたい人に向けられたものです"
 }

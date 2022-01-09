@@ -1,6 +1,4 @@
 import {Formik, FormikErrors} from 'formik';
-import UserPool from '../src/UserPool';
-import {CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import Link from 'next/link';
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -13,6 +11,7 @@ import Head from "next/head";
 import background from "../resources/images/cherry_blossom.svg";
 import {useSelector} from "react-redux";
 import {RootState} from "../src/UserStore";
+import {Auth} from "aws-amplify"
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -75,37 +74,35 @@ export default function Register() {
 
                 <Image src={background} alt={"background"} layout={"fill"} objectFit={"cover"} priority/>
                 <Formik
-                    onSubmit={(values, {setSubmitting, setErrors}) => {
-                        UserPool.signUp(
-                            values.email,
-                            values.password,
-                            [
-                                new CognitoUserAttribute({
-                                    Name: 'preferred_username',
-                                    Value: values.username
-                                })
-                            ],
-                            [],
-                            async (err, data) => {
-                                if (err) {
-                                    const errors: FormikErrors<FormValues> = {}
-                                    if (err.name == "UsernameExistsException")
-                                        errors.email = t("email-registered")
-                                    else {
-                                        console.error(err)
-                                        errors.email = t("unknown-error")
-                                    }
-
-                                    setErrors(errors)
-                                    setSubmitting(false)
-                                } else {
-                                    if (!data?.userConfirmed) {
-                                        changeState(true)
-                                    } else {
-                                        await router.push("/login")
-                                    }
-                                }
+                    onSubmit={async (values, {setSubmitting, setErrors}) => {
+                        try {
+                            const result = await Auth.signUp({
+                                username: values.email,
+                                password: values.password,
+                                attributes: []
                             })
+
+                            if (!result?.userConfirmed) {
+                                changeState(true) // TODO
+                            } else {
+                                await router.push("/login")
+                            }
+                        } catch (e: any) {
+                            const errors: FormikErrors<FormValues> = {}
+                            if ("code" in e) {
+                                if (e.name == "UsernameExistsException") {
+                                    errors.email = t("email-registered")
+                                } else {
+                                    console.error(e)
+                                    errors.email = t("unknown-error")
+                                }
+                            } else {
+                                errors.email = t("unknown-error")
+                            }
+
+                            setErrors(errors)
+                            setSubmitting(false)
+                        }
                     }}
                     initialValues={initialValues}
                     validate={(values: FormValues) => {
