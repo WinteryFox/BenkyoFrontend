@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
@@ -27,6 +28,7 @@
     "@types/axios": "^0.14.0",
     "@types/react": "17.0.24",
     "autoprefixer": "^10.4.0",
+    "cypress": "^9.2.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "postcss": "^8.4.4",

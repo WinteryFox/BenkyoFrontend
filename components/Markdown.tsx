@@ -15,7 +15,7 @@ export default function Markdown(props: {
                 input: (node) => {
                     switch (node.type) {
                         case "checkbox":
-                            return <Checkbox value={node.checked}/>
+                            return <Checkbox id={""} checked={node.checked}/>
                         default:
                             return <input type={node.type}/>
                     }

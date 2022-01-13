@@ -23,7 +23,8 @@ const queryClient = new QueryClient()
 
 function Benkyo({Component, pageProps}: AppProps) {
     useEffect(() => {
-        getSelf().then((user) => store.dispatch(set(user))).catch(() => {})
+        getSelf().then((user) => store.dispatch(set(user))).catch(() => {
+        })
     })
 
     return (
@@ -31,6 +32,8 @@ function Benkyo({Component, pageProps}: AppProps) {
             <Head>
                 <title>Benkyo</title>
                 <link rel={"shortcut icon"} type={"image/svg"} href={"/logo.svg"}/>
+
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 
                 <meta name={"viewport"} content={"width=device-width, initial-scale=1.0, user-scalable=no"}/>
 

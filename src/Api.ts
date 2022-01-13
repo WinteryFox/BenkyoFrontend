@@ -12,7 +12,8 @@ client.interceptors.request.use(async (config) => {
         config.headers = {
             "Authorization": `Bearer ${session.getAccessToken().getJwtToken()}`
         }
-    } catch (_) {}
+    } catch (_) {
+    }
     return config
 })
 
@@ -30,7 +31,8 @@ export interface DeckData {
 }
 
 export interface CardData {
-    id: string
+    id: string,
+    deck: string,
     question: string,
     answers: Array<string>
 }
@@ -78,4 +80,30 @@ export async function getNewCards(deck: string): Promise<Array<CardData> | null>
 
 export async function createDeck(data: CreateDeckRequest): Promise<DeckData | null> {
     return request("POST", "/decks", data)
+}
+
+export interface CardAttempt {
+    card: string,
+    attempts: Array<string>
+}
+
+export interface CardCreateRequest {
+    question: string,
+    answers: Array<string>
+}
+
+export async function finishStudySession(data: Array<CardAttempt>): Promise<void> {
+
+}
+
+export async function deleteDeck(id: string) {
+    return request("DELETE", `/decks/${encodeURIComponent(id)}`)
+}
+
+export async function createCard(deck: string, data: CardCreateRequest): Promise<CardData | null> {
+    return request<CardCreateRequest, CardData>("POST", `/decks/${encodeURIComponent(deck)}/cards`, data)
+}
+
+export async function deleteCard(deckId: string, cardId: string) {
+    return request("DELETE", `/decks/${encodeURIComponent(deckId)}/cards/${cardId}`)
 }

@@ -129,7 +129,7 @@ export default function Login() {
 
                         <div className={"flex mt-1"}>
                             <Link href={"/register"}>
-                                <a className={"text-xs mt-2 text-pink-500 hover:text-pink-400"}>{t("need-account")}</a>
+                                <a id={"register"} className={"text-xs mt-2 text-pink-500 hover:text-pink-400"}>{t("need-account")}</a>
                             </Link>
                         </div>
                     </form>)}

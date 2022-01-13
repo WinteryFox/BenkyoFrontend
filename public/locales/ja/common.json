@@ -34,5 +34,9 @@
   "short-description": "要約",
   "description": "説明",
   "source-language": "このデックは〇語を母語として話す人と",
-  "target-language": "〇語を話せるようになりたい人に向けられたものです"
+  "target-language": "〇語を話せるようになりたい人に向けられたものです",
+  "give-answer": "正しい答えを入力してください",
+  "save": "保存",
+  "question": "問題",
+  "answers": "答え"
 }

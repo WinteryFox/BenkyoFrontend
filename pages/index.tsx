@@ -6,7 +6,7 @@ import {GetStaticProps} from "next";
 import {useQuery} from "react-query";
 import DefaultErrorPage from "next/error";
 import {useSelector, useStore} from "react-redux";
-import {RootState} from "../src/UserStore";
+import store, {RootState} from "../src/UserStore";
 import {useRouter} from "next/router";
 
 interface Props {
@@ -55,7 +55,7 @@ export default function Home() {
                 <DeckPreview key={deck.id.toString()} deck={deck}/>
             ))}
 
-            <button className={"flex m-2 w-72 h-[296px] flex-col p-4 rounded bg-white shadow border items-center justify-center text-5xl cursor-pointer hover:border-violet-500 hover:scale-[102%] transition-all"}
+            <button id={"new-deck"} className={"flex m-2 w-72 h-[296px] flex-col p-4 rounded bg-white shadow border items-center justify-center text-5xl cursor-pointer hover:border-violet-500 hover:scale-[102%] transition-all"}
             onClick={createDeck}>
                 +
             </button>

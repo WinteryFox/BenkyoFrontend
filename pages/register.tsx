@@ -79,7 +79,9 @@ export default function Register() {
                             const result = await Auth.signUp({
                                 username: values.email,
                                 password: values.password,
-                                attributes: []
+                                attributes: {
+                                    preferred_username: values.username
+                                }
                             })
 
                             if (!result?.userConfirmed) {
