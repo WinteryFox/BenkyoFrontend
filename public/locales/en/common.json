@@ -26,7 +26,7 @@
   "unknown-error": "An unknown error occurred, try again later.",
   "start-deck": "Start studying",
   "created-at": "Created {{date}}",
-  "word-list": "Cards ({{count}})",
+  "word-list": "{{count}} cards",
   "error": "An unknown error occurred, please try again later.",
   "create-deck": "Create deck",
   "private": "Private",

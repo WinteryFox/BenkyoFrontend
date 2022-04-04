@@ -26,7 +26,7 @@
   "unknown-error": "不明なエラーが発生しましたので、後でもう一度試してください。",
   "start-deck": "勉強開始",
   "created-at": "{{date}}に作成",
-  "word-list": "カード数（{{count}}）",
+  "word-list": "{{count}}個カード",
   "error": "不明なエラーが発生しました、また後で試してください。",
   "create-deck": "作成",
   "private": "プライベート",

@@ -9,61 +9,61 @@
     @font-face {
         font-family: Whitney;
         font-weight: 300;
-        src: url(/fonts/whitneylight.otf) format("opentype")
+        src: url("/fonts/whitneylight.otf") format("opentype")
     }
     @font-face {
         font-family: Whitney;
         font-style: italic;
         font-weight: 300;
-        src: url(/fonts/whitneylightitalic.otf) format("opentype")
+        src: url("/fonts/whitneylightitalic.otf") format("opentype")
     }
 
     @font-face {
         font-family: Whitney;
         font-weight: 400;
-        src: url(/fonts/whitneybook.otf) format("opentype")
+        src: url("/fonts/whitneybook.otf") format("opentype")
     }
     @font-face {
         font-family: Whitney;
         font-style: italic;
         font-weight: 400;
-        src: url(/fonts/whitneybookitalic.otf) format("opentype")
+        src: url("/fonts/whitneybookitalic.otf") format("opentype")
     }
 
     @font-face {
         font-family: Whitney;
         font-weight: 500;
-        src: url(/fonts/whitneymedium.otf) format("opentype")
+        src: url("/fonts/whitneymedium.otf") format("opentype")
     }
     @font-face {
         font-family: Whitney;
         font-style: italic;
         font-weight: 500;
-        src: url(/fonts/whitneymediumitalic.otf) format("opentype")
+        src: url("/fonts/whitneymediumitalic.otf") format("opentype")
     }
 
     @font-face {
         font-family: Whitney;
         font-weight: 600;
-        src: url(/fonts/whitneysemibold.otf) format("opentype")
+        src: url("/fonts/whitneysemibold.otf") format("opentype")
     }
     @font-face {
         font-family: Whitney;
         font-style: italic;
         font-weight: 600;
-        src: url(/fonts/whitneysemibolditalic.otf) format("opentype")
+        src: url("/fonts/whitneysemibolditalic.otf") format("opentype")
     }
 
     @font-face {
         font-family: Whitney;
         font-weight: 700;
-        src: url(/fonts/whitneyboldregular.woff) format("woff")
+        src: url("/fonts/whitneyboldregular.woff") format("woff")
     }
     @font-face {
         font-family: Whitney;
         font-style: italic;
         font-weight: 700;
-        src: url(/fonts/whitneybold.otf) format("opentype")
+        src: url("/fonts/whitneybold.otf") format("opentype")
     }
 }
 
@@ -77,7 +77,48 @@
     }
 }
 
+*:focus-visible {
+    @apply outline outline-pink-500 outline-2;
+}
+
 body {
     text-rendering: optimizeLegibility;
     line-height: 1.15;
+}
+
+table {
+    @apply border-separate;
+    border-spacing: 0 0.2em;
+}
+
+tr th:first-child {
+    @apply rounded-l-full;
+}
+
+tr th:last-child {
+    @apply rounded-r-full;
+}
+
+tr td {
+    @apply border-y border-y-transparent transition-colors;
+}
+
+tr:hover td {
+    @apply border-y-violet-500 cursor-pointer;
+}
+
+tr td:first-child {
+    @apply border-l border-l-transparent rounded-l-3xl;
+}
+
+tr td:last-child {
+    @apply border-r border-r-transparent rounded-r-3xl;
+}
+
+tr:hover td:first-child {
+    @apply border-l-violet-500;
+}
+
+tr:hover td:last-child {
+    @apply border-r-violet-500;
 }
