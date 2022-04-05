@@ -161,16 +161,23 @@ export default function Id() {
                                     </Button>
                                 </div>
 
-                                <table className={"text-lg mb-3 mt-3 table-fixed w-full"}>
-                                    <thead>
-                                    <tr className={"sticky"}>
-                                        {cardsQuery.data?.columns.map((column: ColumnData) =>
-                                            <th key={column.id} className={"text-left py-2 px-4"} tabIndex={0}>
-                                                {column.name}
-                                            </th>
-                                        )}
-                                    </tr>
-                                    </thead>
+                                <div className={"sticky top-0 bg-white"}>
+                                    <div className={"sticky top-2 rounded-full bg-pink-100 mt-3"}>
+                                        <table className={"text-lg mb-0 table-fixed w-full border-collapse"}>
+                                            <thead>
+                                            <tr>
+                                                {cardsQuery.data?.columns.map((column: ColumnData) =>
+                                                    <th key={column.id} className={"text-left py-2 px-4"} tabIndex={0}>
+                                                        {column.name}
+                                                    </th>
+                                                )}
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <table className={"text-lg mb-3 mt-0 table-fixed w-full"}>
                                     <tbody>
                                     {cardsQuery.data.cards.sort((a, b) => a.ordinal > b.ordinal ? 1 : -1).map((card) =>
                                         <tr key={card.id}>
