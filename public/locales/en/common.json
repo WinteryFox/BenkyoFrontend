@@ -38,5 +38,8 @@
   "give-answer": "Write down the correct answer",
   "save": "Save",
   "question": "Question",
-  "answers": "Answers"
+  "answers": "Answers",
+  "edit": "Edit",
+  "delete": "Delete",
+  "copy-link": "Copy link"
 }

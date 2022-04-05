@@ -1,8 +1,6 @@
 import {
-    CardData,
     CardRequest,
     ColumnData,
-    createCard,
     DeckData,
     deleteDeck,
     getCards,
@@ -20,7 +18,6 @@ import Markdown from "../../components/Markdown";
 import DefaultErrorPage from "next/error"
 import {useSelector} from "react-redux";
 import {RootState} from "../../src/UserStore";
-import {useState} from "react";
 import {languageFromCode} from "../../src/languages";
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -83,11 +80,36 @@ export default function Id() {
 
             <div className={"w-full h-full flex justify-center"}>
                 <div className={"flex flex-col lg:flex-row pt-8 pb-4 px-10 lg:w-[1024px]"}>
-                    <div className={"flex lg:flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
+                    <div className={"flex flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
                         <div className={"relative w-32 h-32"}>
                             <Image src={"/logo.svg"} alt={"Deck image"} layout={"fill"} className={"rounded-3xl"}/>
                             <i className={`absolute -bottom-2 -right-2 fp fp-square rounded-full fp-lg ${deckQuery.data.targetLanguage.substr(3, 5).toLowerCase()}`}
                                title={deckQuery.data.targetLanguage}/>
+                        </div>
+
+                        <div className={"flex flex-col w-full mt-4"}>
+                            <Button
+                                className={"flex btn-icon bg-violet-100 hover:bg-violet-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
+                                onClick={() => {navigator.clipboard.writeText(window.location.href).then()}}
+                                id={"delete-deck"}>
+                                {t("copy-link")} <i className={"material-icons"}>link</i>
+                            </Button>
+                            {user != null && deckQuery.data.author == user.id && (
+                                <>
+                                    <Button
+                                        className={"flex btn-icon mt-1.5 bg-amber-100 hover:bg-orange-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
+                                        onClick={() => {
+                                        }}
+                                        id={"delete-deck"}>
+                                        {t("edit")} <i className={"material-icons"}>edit</i>
+                                    </Button>
+                                    <Button
+                                        className={"flex btn-icon mt-1.5 items-center bg-rose-200 hover:bg-rose-700 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
+                                        onClick={() => deleteDeckMutation.mutate()}
+                                        id={"delete-deck"}>
+                                        {t("delete")} <i className={"material-icons"}>delete</i>
+                                    </Button>
+                                </>)}
                         </div>
                     </div>
 
@@ -104,32 +126,24 @@ export default function Id() {
                                     </div>
 
                                     <div className={"flex mt-1 text-lg mb-3"}>
-                                        <div className={"flex select-none bg-pink-100 rounded-full px-5 py-1.5 mr-2"}
+                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 mr-2"}
                                              tabIndex={0}>
                                             {languageFromCode(deckQuery.data.sourceLanguage, translation.i18n.language)}
                                         </div>
-                                        <div className={"flex select-none bg-pink-100 rounded-full px-5 py-1.5 mr-2"}
+                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 mr-2"}
                                              tabIndex={0}>
                                             {languageFromCode(deckQuery.data.targetLanguage, translation.i18n.language)}
                                         </div>
-                                        <div className={"flex select-none bg-pink-100 rounded-full px-5 py-1.5"}
+                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5"}
                                              tabIndex={0}>
                                             {t("word-list", {count: cardsQuery.data.cards.length})}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            {user != null && deckQuery.data.author == user.id &&
-                                <button
-                                    className={"rounded-full w-10 h-10 hover:text-red-500 hover:bg-red-300 hover:bg-opacity-30 transition-all duration-200"}
-                                    onClick={() => deleteDeckMutation.mutate()}
-                                    id={"delete-deck"}>
-                                    <i className={"material-icons text-3xl"}>delete</i>
-                                </button>}
                         </div>
 
-                        <div tabIndex={0}>
+                        <div tabIndex={0} className={"leading-5"}>
                             <Markdown>
                                 {deckQuery.data.description}
                             </Markdown>
@@ -140,7 +154,7 @@ export default function Id() {
                                 <div className={"w-full mt-4"}>
                                     <Button
                                         id={"study"}
-                                        className={"text-white bg-violet-600 hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-500/30"}
+                                        className={"text-white text-lg bg-violet-600 hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-500/30"}
                                         onClick={() => router.push(`/study/${id}`)}
                                         disabled={cardsQuery.data!.cards.length == 0}>
                                         {t("start-deck")}
@@ -149,7 +163,7 @@ export default function Id() {
 
                                 <table className={"text-lg mb-3 mt-3 table-fixed w-full"}>
                                     <thead>
-                                    <tr>
+                                    <tr className={"sticky"}>
                                         {cardsQuery.data?.columns.map((column: ColumnData) =>
                                             <th key={column.id} className={"text-left py-2 px-4"} tabIndex={0}>
                                                 {column.name}

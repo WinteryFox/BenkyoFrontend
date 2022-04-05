@@ -69,7 +69,11 @@
 
 @layer components {
     .btn {
-        @apply disabled:cursor-not-allowed transition-all duration-150 rounded-full px-[24px] h-[40px] w-full disabled:bg-gray-400 disabled:hover:bg-gray-400
+        @apply flex items-center justify-center disabled:cursor-not-allowed transition-all duration-150 rounded-full px-[24px] h-[40px] w-full disabled:bg-gray-400 disabled:hover:bg-gray-400
+    }
+
+    .btn.btn-icon {
+        @apply justify-between px-4;
     }
 
     .btn-violet {

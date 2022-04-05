@@ -38,5 +38,8 @@
   "give-answer": "正しい答えを入力してください",
   "save": "保存",
   "question": "問題",
-  "answers": "答え"
+  "answers": "答え",
+  "edit": "編集",
+  "delete": "削除",
+  "copy-link": "リンクをコピー"
 }
