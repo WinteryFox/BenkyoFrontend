@@ -81,15 +81,15 @@ export default function Id() {
             <div className={"w-full h-full flex justify-center"}>
                 <div className={"flex flex-col lg:flex-row pt-8 pb-4 px-10 lg:w-[1024px]"}>
                     <div className={"flex flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
-                        <div className={"relative w-32 h-32"}>
+                        <div className={"relative w-[11em] h-[11em]"}>
                             <Image src={"/logo.svg"} alt={"Deck image"} layout={"fill"} className={"rounded-3xl"}/>
                             <i className={`absolute -bottom-2 -right-2 fp fp-square rounded-full fp-lg ${deckQuery.data.targetLanguage.substr(3, 5).toLowerCase()}`}
                                title={deckQuery.data.targetLanguage}/>
                         </div>
 
-                        <div className={"flex flex-col w-full mt-4"}>
+                        <div className={"flex flex-col md:flex-row lg:flex-col lg:w-full w-full mt-4"}>
                             <Button
-                                className={"flex btn-icon bg-violet-100 hover:bg-violet-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
+                                className={"flex lg:mr-0 mr-1.5 btn-icon bg-violet-100 hover:bg-violet-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
                                 onClick={() => {navigator.clipboard.writeText(window.location.href).then()}}
                                 id={"delete-deck"}>
                                 {t("copy-link")} <i className={"material-icons"}>link</i>
@@ -97,14 +97,14 @@ export default function Id() {
                             {user != null && deckQuery.data.author == user.id && (
                                 <>
                                     <Button
-                                        className={"flex btn-icon mt-1.5 bg-amber-100 hover:bg-orange-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
+                                        className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 lg:mr-0 mr-1.5 bg-amber-100 hover:bg-orange-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
                                         onClick={() => {
                                         }}
                                         id={"delete-deck"}>
                                         {t("edit")} <i className={"material-icons"}>edit</i>
                                     </Button>
                                     <Button
-                                        className={"flex btn-icon mt-1.5 items-center bg-rose-200 hover:bg-rose-700 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
+                                        className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 items-center bg-rose-200 hover:bg-rose-700 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all"}
                                         onClick={() => deleteDeckMutation.mutate()}
                                         id={"delete-deck"}>
                                         {t("delete")} <i className={"material-icons"}>delete</i>
@@ -115,8 +115,8 @@ export default function Id() {
 
                     <div className={"flex flex-col w-full"}>
                         <div className={"flex justify-between"}>
-                            <div className={"flex justify-between items-center"}>
-                                <div className={"flex flex-col"}>
+                            <div className={"flex w-full justify-between items-center"}>
+                                <div className={"flex w-full flex-col"}>
                                     <div className={"text-xs text-gray-400 italic"}>
                                         {t("created-at", {date: new Date(deckQuery.data.createdAt).toLocaleDateString()})}
                                     </div>
@@ -125,12 +125,12 @@ export default function Id() {
                                         {deckQuery.data.name}
                                     </div>
 
-                                    <div className={"flex mt-1 text-lg mb-3"}>
-                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 mr-2"}
+                                    <div className={"flex flex-col md:flex-row mt-1 text-lg mb-3"}>
+                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2"}
                                              tabIndex={0}>
                                             {languageFromCode(deckQuery.data.sourceLanguage, translation.i18n.language)}
                                         </div>
-                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 mr-2"}
+                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2"}
                                              tabIndex={0}>
                                             {languageFromCode(deckQuery.data.targetLanguage, translation.i18n.language)}
                                         </div>
