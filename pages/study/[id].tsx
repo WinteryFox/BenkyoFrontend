@@ -4,11 +4,10 @@ import Head from "next/head";
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
 import {useQuery} from "react-query";
-import {CardAttempt, CardData, DeckData, finishStudySession, getDeck, getNewCards} from "../../src/Api";
+import {CardAttempt, CardData, DeckData, getDeck, getNewCards} from "../../src/Api";
 import Input from "../../components/Input";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import DefaultErrorPage from "next/error";
-import Card from "../../components/Card";
 
 export const getStaticProps: GetStaticProps = async (context) => {
     return {

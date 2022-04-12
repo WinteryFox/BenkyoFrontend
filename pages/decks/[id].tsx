@@ -162,7 +162,7 @@ export default function Id() {
                                 </div>
 
                                 <div className={"sticky top-0 bg-white"}>
-                                    <div className={"sticky top-2 rounded-full bg-pink-100 mt-3"}>
+                                    <div className={"sticky top-2 rounded-full shadow mt-3"}>
                                         <table className={"text-lg mb-0 table-fixed w-full border-collapse"}>
                                             <thead>
                                             <tr>

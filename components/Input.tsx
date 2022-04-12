@@ -21,7 +21,7 @@ export default function Input(props: {
                htmlFor={props.id}>
             {props.children}
             <input
-                className={`${props.error ? "border-red-500" : ""} shadow border border-gray-200 text-black text-base border rounded-3xl w-full py-2 px-3 leading-tight transition-colors duration-150 focus:outline-none focus:shadow-outline focus:border-violet-500 transition-colors duration-150`}
+                className={`${props.error ? "border-red-500" : ""} shadow border border-gray-200 text-black text-base border rounded-full w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:border-violet-500 transition-colors duration-150`}
                 id={props.id} type={props.type} name={props.id} value={props.value} autoComplete={props.autocomplete}
                 onChange={(event) => props.onChange(event)} onKeyPress={onKeyPress} required/>
         </label>

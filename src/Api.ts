@@ -98,6 +98,15 @@ export async function createDeck(data: CreateDeckRequest): Promise<DeckData> {
     return request("POST", "/decks", data)
 }
 
+export async function getAvailableLanguages(locale: string = "en-US"): Promise<Array<Locale>> {
+    return request("GET", "/languages")
+}
+
+export interface Locale {
+    code: string,
+    name: string
+}
+
 export interface CardAttempt {
     card: string,
     attempts: Array<string>

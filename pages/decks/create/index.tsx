@@ -1,4 +1,9 @@
-import {createDeck, CreateDeckRequest} from "../../../src/Api";
+import {
+    createDeck,
+    CreateDeckRequest,
+    getAvailableLanguages,
+    Locale
+} from "../../../src/Api";
 import {GetStaticProps} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {Formik, FormikErrors} from "formik";
@@ -8,6 +13,9 @@ import Button from "../../../components/Button";
 import Checkbox from "../../../components/Checkbox";
 import TextArea from "../../../components/TextArea";
 import {useRouter} from "next/router";
+import {useQuery} from "react-query";
+import Select from "../../../components/Select";
+import Option from "../../../components/Option";
 
 export const getStaticProps: GetStaticProps = async (context) => {
     return {
@@ -19,15 +27,27 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export default function Index() {
     const router = useRouter()
-    const {t} = useTranslation()
+    const translation = useTranslation()
     const initialValues: CreateDeckRequest = {
         name: "",
         shortDescription: "",
         description: "",
-        targetLanguage: "",
-        sourceLanguage: "",
+        targetLanguage: "ja-JP",
+        sourceLanguage: "en-US",
         isPrivate: false
     }
+
+    const {isLoading, error, data} = useQuery<Array<Locale>>(
+        `languages`,
+        async () => {
+            return await getAvailableLanguages()
+        }
+    )
+
+    if (isLoading)
+        return "Loading..."
+    if (error)
+        return "Error..."
 
     // TODO: Prevent user leaving page without saving
     return (
@@ -53,19 +73,19 @@ export default function Index() {
                 const errors: FormikErrors<CreateDeckRequest> = {}
 
                 if (!values.name)
-                    errors.name = t("required")
+                    errors.name = translation.t("required")
 
                 if (!values.shortDescription)
-                    errors.shortDescription = t("required")
+                    errors.shortDescription = translation.t("required")
 
                 if (!values.description)
-                    errors.description = t("required")
+                    errors.description = translation.t("required")
 
                 if (!values.sourceLanguage)
-                    errors.sourceLanguage = t("required")
+                    errors.sourceLanguage = translation.t("required")
 
                 if (!values.targetLanguage)
-                    errors.targetLanguage = t("required")
+                    errors.targetLanguage = translation.t("required")
 
                 return errors
             }}>
@@ -79,32 +99,48 @@ export default function Index() {
               }) => (
                 <form onSubmit={handleSubmit}
                       className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow"}>
-                    <Input id={"name"} value={values.name} onChange={handleChange} error={!!errors.name && touched.name}>
-                        {t("name")} <span className={"text-xs"}>{errors.name && touched.name && errors.name}</span>
+                    <Input id={"name"} value={values.name} onChange={handleChange}
+                           error={!!errors.name && touched.name}>
+                        {translation.t("name")} <span
+                        className={"text-xs"}>{errors.name && touched.name && errors.name}</span>
                     </Input>
 
-                    <Input id={"shortDescription"} value={values.shortDescription} onChange={handleChange} error={!!errors.shortDescription && touched.shortDescription}>
-                        {t("short-description")} <span>{errors.shortDescription && touched.shortDescription && errors.shortDescription}</span>
+                    <Input id={"shortDescription"} value={values.shortDescription} onChange={handleChange}
+                           error={!!errors.shortDescription && touched.shortDescription}>
+                        {translation.t("short-description")}
+                        <span>{errors.shortDescription && touched.shortDescription && errors.shortDescription}</span>
                     </Input>
 
-                    <TextArea id={"description"} value={values.description} onChange={handleChange} error={!!errors.description && touched.description}>
-                        {t("description")} <span>{errors.description && touched.description && errors.description}</span>
+                    <TextArea id={"description"} value={values.description} onChange={handleChange}
+                              error={!!errors.description && touched.description}>
+                        {translation.t("description")}
+                        <span>{errors.description && touched.description && errors.description}</span>
                     </TextArea>
 
-                    <Input id={"sourceLanguage"} value={values.sourceLanguage} onChange={handleChange} error={!!errors.sourceLanguage && touched.sourceLanguage}>
-                        {t("source-language")} <span>{errors.sourceLanguage && touched.sourceLanguage && errors.sourceLanguage}</span>
-                    </Input>
+                    <Select id={"sourceLanguage"} value={values.sourceLanguage} onChange={handleChange}
+                            error={!!errors.sourceLanguage && touched.sourceLanguage}
+                            label={translation.t("source-language")}>
+                        {data!!.sort((a, b) => a.name.localeCompare(b.name))
+                            .map(locale => (
+                                <Option key={locale.code} value={locale.code}>{locale.name}</Option>
+                            ))}
+                    </Select>
 
-                    <Input id={"targetLanguage"} value={values.targetLanguage} onChange={handleChange} error={!!errors.targetLanguage && touched.targetLanguage}>
-                        {t("target-language")} <span>{errors.targetLanguage && touched.targetLanguage && errors.targetLanguage}</span>
-                    </Input>
+                    <Select id={"targetLanguage"} value={values.targetLanguage} onChange={handleChange}
+                            error={!!errors.targetLanguage && touched.targetLanguage}
+                            label={translation.t("target-language")}>
+                        {data!!.sort((a, b) => a.name.localeCompare(b.name))
+                            .map(locale => (
+                                <Option key={locale.code} value={locale.code}>{locale.name}</Option>
+                            ))}
+                    </Select>
 
                     <Checkbox id={"isPrivate"} checked={values.isPrivate} onChange={handleChange}>
-                        {t("private")}
+                        {translation.t("private")}
                     </Checkbox>
 
                     <Button type={"submit"} className={"btn-violet"} disabled={isSubmitting}>
-                        {t("create-deck")}
+                        {translation.t("create-deck")}
                     </Button>
                 </form>)}
         </Formik>
