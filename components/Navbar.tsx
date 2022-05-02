@@ -10,7 +10,7 @@ export default function Navbar() {
 
     return (
         <nav
-            className={"flex sticky items-center w-full z-40 bg-white justify-between px-8 py-3"}>
+            className={"flex sticky items-center w-full z-40 bg-white justify-between px-8 py-3 dark:bg-black"}>
             <Link href={"/"}>
                 <a className={"flex items-center"}>
                     <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
@@ -25,7 +25,7 @@ export default function Navbar() {
                         </a>
                     </Link> :
                     <Link href={"/profile"}>
-                        <a id={"profile"} className={"px-5 py-2.5 rounded-full border"}>
+                        <a id={"profile"} className={"px-5 py-2.5 rounded-full border dark:text-white hover:bg-gray-100 active:bg-gray-50 dark:active:bg-gray-700 dark:hover:bg-gray-800 dark:border-gray-300 dark:border-gray-600"}>
                             {user.username}
                         </a>
                     </Link>}
