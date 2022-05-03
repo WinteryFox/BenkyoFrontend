@@ -89,7 +89,7 @@ export default function Id() {
 
                         <div className={"flex flex-col md:flex-row lg:flex-col lg:w-full w-full mt-4"}>
                             <Button
-                                className={"flex lg:mr-0 mr-1.5 btn-icon bg-violet-200 hover:bg-violet-500 active:bg-violet-400 active:active:scale-95 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:active:bg-violet-600 dark:text-white dark:bg-gray-900 hover:bg-violet-800"}
+                                className={"flex lg:mr-0 mr-1.5 btn-icon bg-violet-200 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:active:bg-violet-600 dark:text-white dark:bg-gray-900 hover:bg-violet-800"}
                                 onClick={() => {navigator.clipboard.writeText(window.location.href).then()}}
                                 id={"delete-deck"}>
                                 {t("copy-link")} <i className={"material-icons"}>link</i>
