@@ -55,7 +55,7 @@ export default function Home() {
                 <DeckPreview key={deck.id.toString()} deck={deck}/>
             ))}
 
-            <button id={"new-deck"} className={"flex m-2 w-72 h-[296px] flex-col p-4 rounded bg-white shadow border items-center justify-center text-5xl cursor-pointer hover:border-violet-500 hover:scale-[102%] transition-all"}
+            <button id={"new-deck"} className={"flex m-2 w-72 h-[296px] flex-col p-4 rounded bg-white items-center justify-center text-5xl cursor-pointer shadow-md border border-gray-200 hover:border hover:border-violet-300 hover:scale-[102%] hover:shadow-xl transition-all dark:bg-black dark:text-gray-200 hover:border-violet-400 dark:border-gray-500 active:bg-gray-800 active:scale-100 dark:shadow-md dark:shadow-gray-600 dark:hover:shadow-lg dark:hover:shadow-violet-800"}
             onClick={createDeck}>
                 +
             </button>
