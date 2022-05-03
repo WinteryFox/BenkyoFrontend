@@ -10,7 +10,7 @@ export default function DeckPreview(props: {
 
     return (
         <Link href={`/decks/${props.deck.id}`}>
-            <a className={"flex grow-0 select-none m-2 w-72 h-[296px] flex-col p-4 rounded bg-white shadow border hover:border shadow-md border border-gray-200 hover:border-violet-300 hover:scale-[102%] hover:shadow-xl over:border-violet-400 transition-all dark:bg-black dark:text-white dark:border-gray-500 active:bg-gray-800 active:scale-100 dark:shadow-md dark:shadow-gray-600 dark:hover:shadow-lg dark:hover:shadow-violet-800"}>
+            <a className={"flex grow-0 select-none m-2 w-72 h-[296px] flex-col p-4 rounded bg-white hover:border shadow-md border border-gray-200 hover:border-violet-300 hover:scale-105 active:scale-100 hover:shadow-2xl over:border-violet-400 transition-all active:bg-gray-100 dark:bg-black dark:text-white dark:border-gray-600 dark:active:bg-gray-800 dark:shadow-md dark:shadow-gray-600 dark:hover:shadow-lg dark:hover:shadow-violet-800"}>
                 <div className={"flex justify-center"}>
                     <div className={"relative w-32 h-32"}>
                         <Image src={"/logo.svg"} alt={"Deck image"} layout={"fill"} className={"rounded-3xl"}/>
