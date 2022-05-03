@@ -126,15 +126,15 @@ export default function Id() {
                                     </div>
 
                                     <div className={"flex flex-col md:flex-row mt-1 text-lg mb-3 dark:text-black"}>
-                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-800"}
+                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
                                              tabIndex={0}>
                                             {languageFromCode(deckQuery.data.sourceLanguage, translation.i18n.language)}
                                         </div>
-                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-800"}
+                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
                                              tabIndex={0}>
                                             {languageFromCode(deckQuery.data.targetLanguage, translation.i18n.language)}
                                         </div>
-                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 dark:text-white dark:bg-emerald-800"}
+                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 dark:text-white dark:bg-emerald-700"}
                                              tabIndex={0}>
                                             {t("word-list", {count: cardsQuery.data.cards.length})}
                                         </div>
