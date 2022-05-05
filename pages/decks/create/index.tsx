@@ -98,7 +98,7 @@ export default function Index() {
                   isSubmitting
               }) => (
                 <form onSubmit={handleSubmit}
-                      className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow"}>
+                      className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow-gray-400 shadow-sm dark:bg-black"}>
                     <Input id={"name"} value={values.name} onChange={handleChange}
                            error={!!errors.name && touched.name}>
                         {translation.t("name")} <span
@@ -139,7 +139,7 @@ export default function Index() {
                         {translation.t("private")}
                     </Checkbox>
 
-                    <Button type={"submit"} className={"btn-violet"} disabled={isSubmitting}>
+                    <Button type={"submit"} className={"text-white text-md bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-md hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-800 dark:hover:bg-violet-700"} disabled={isSubmitting}>
                         {translation.t("create-deck")}
                     </Button>
                 </form>)}
