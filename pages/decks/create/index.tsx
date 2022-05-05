@@ -101,20 +101,20 @@ export default function Index() {
                       className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow-gray-400 shadow-sm dark:bg-black"}>
                     <Input id={"name"} value={values.name} onChange={handleChange}
                            error={!!errors.name && touched.name}>
-                        {translation.t("name")} <span
-                        className={"text-xs"}>{errors.name && touched.name && errors.name}</span>
+                        {translation.t("name")}
+                        <span> {errors.name && touched.name && errors.name}</span>
                     </Input>
 
                     <Input id={"shortDescription"} value={values.shortDescription} onChange={handleChange}
                            error={!!errors.shortDescription && touched.shortDescription}>
                         {translation.t("short-description")}
-                        <span>{errors.shortDescription && touched.shortDescription && errors.shortDescription}</span>
+                        <span> {errors.shortDescription && touched.shortDescription && errors.shortDescription}</span>
                     </Input>
 
                     <TextArea id={"description"} value={values.description} onChange={handleChange}
                               error={!!errors.description && touched.description}>
                         {translation.t("description")}
-                        <span>{errors.description && touched.description && errors.description}</span>
+                        <span> {errors.description && touched.description && errors.description}</span>
                     </TextArea>
 
                     <Select id={"sourceLanguage"} value={values.sourceLanguage} onChange={handleChange}
