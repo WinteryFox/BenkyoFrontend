@@ -24,11 +24,16 @@ export default function Profile() {
         return "You're not logged in." // TODO
 
     return (
-        <Button onClick={async () => {
-            await Auth.signOut()
-            dispatch(set(null))
-        }}>
-            {t("logout")}
-        </Button>
+        <div className={"flex items-center justify-center w-full h-full"}>
+            <Button className={" max-w-xs w-full text-white bg-red-500 text-lg hover:shadow hover:shadow-red-400 hover:bg-red-400"}
+                    onClick={async () => {
+                        await Auth.signOut()
+                        dispatch(set(null))
+                        await router.push("/login")
+                    }}>
+                {t("logout")}
+            </Button>
+        </div>
+
     )
 }

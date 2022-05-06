@@ -67,7 +67,7 @@ export default function Register() {
         )
     else
         return (
-            <div className={"flex items-center justify-center w-full h-full"}>
+            <div className={"flex items-center justify-center w-full h-full dark:text-white"}>
                 <Head>
                     <title>Benkyo | {t("register")}</title>
                 </Head>
@@ -147,7 +147,7 @@ export default function Register() {
                           isSubmitting
                       }) => (
                         <form onSubmit={handleSubmit}
-                              className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow"}>
+                              className={"z-10 flex flex-col rounded-3xl max-w-md w-full p-8 bg-white shadow dark:bg-black"}>
                             <h3 className={"flex justify-center text-2xl font-bold mb-4"}>{t("account-creation")}</h3>
 
                             <div className="mb-4">
@@ -195,7 +195,7 @@ export default function Register() {
 
                             <div className={"flex mt-1"}>
                                 <Link href={"/login"}>
-                                    <a className={"text-xs mt-2 text-pink-500 hover:text-pink-400"}>{t("have-account")}</a>
+                                    <a className={"mt-2 text-pink-500 hover:text-pink-400"}>{t("have-account")}</a>
                                 </Link>
                             </div>
                         </form>)}

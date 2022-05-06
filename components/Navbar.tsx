@@ -58,7 +58,7 @@ export default function Navbar() {
                 {user == null ?
                     <Link href={"/login"}>
                         <a id={"login"}
-                           className={"px-5 py-2.5 rounded-full border text-violet-900 bg-pink-200 hover:bg-pink-100 hover:shadow-lg hover:shadow-pink-500/30"}>
+                           className={"px-5 py-2 rounded-full border border-pink-200 bg-pink-100 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-500/30 dark:bg-pink-300 dark:hover:bg-pink-300/90"}>
                             {translation.t("login")}
                         </a>
                     </Link> :
