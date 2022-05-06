@@ -23,7 +23,7 @@ export default function Navbar() {
         {
             label: (
                 <div className={"flex items-center"}>
-                    <Flag.US className={"h-4 rounded mr-2"}/> English
+                    <Flag.GB className={"h-4 rounded mr-2"}/> English
                 </div>
             ), value: 'en'
         },
