@@ -23,21 +23,21 @@ export default function Navbar() {
         {
             label: (
                 <div className={"flex items-center"}>
-                    <Flag.GB className={"h-4 rounded mr-2"}/> English
+                    <Flag.GB className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> English
                 </div>
             ), value: 'en'
         },
         {
             label: (
                 <div className={"flex items-center"}>
-                    <Flag.NL className={"h-4 rounded mr-2"}/> Nederlands
+                    <Flag.NL className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> Nederlands
                 </div>
             ), value: 'nl'
         },
         {
             label: (
                 <div className={"flex items-center"}>
-                    <Flag.JP className={"h-4 rounded mr-2"}/> 日本語
+                    <Flag.JP className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> 日本語
                 </div>
             ), value: 'ja'
         }
@@ -47,7 +47,7 @@ export default function Navbar() {
         <nav
             className={"flex sticky items-center w-full z-40 bg-white justify-between px-8 py-3 dark:bg-black"}>
             <Link href={"/"}>
-                <a className={"flex items-center"}>
+                <a className={"flex items-center"} tabIndex={0}>
                     <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
                     <h1 className={"text-3xl ml-2 text-pink-300"}>Benkyo</h1>
                 </a>
