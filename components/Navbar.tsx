@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import Dropdown, {Option} from "./Dropdown";
 import {useRouter} from "next/router";
 import {useState} from "react";
+import Flag from "country-flag-icons/react/3x2";
 
 export default function Navbar() {
     const translation = useTranslation()
@@ -21,23 +22,23 @@ export default function Navbar() {
     const options: Option[] = [
         {
             label: (
-                <>
-                    <i className={"fp fp-rounded us mr-2"} title={"United States"}/> English
-                </>
+                <div className={"flex items-center"}>
+                    <Flag.US className={"h-4 rounded mr-2"}/> English
+                </div>
             ), value: 'en'
         },
         {
             label: (
-                <>
-                    <i className={"fp fp-rounded nl mr-2"} title={"Nederland"}/> Nederlands
-                </>
+                <div className={"flex items-center"}>
+                    <Flag.NL className={"h-4 rounded mr-2"}/> Nederlands
+                </div>
             ), value: 'nl'
         },
         {
             label: (
-                <>
-                    <i className={"fp fp-rounded jp mr-2"} title={"日本"}/> 日本語
-                </>
+                <div className={"flex items-center"}>
+                    <Flag.JP className={"h-4 rounded mr-2"}/> 日本語
+                </div>
             ), value: 'ja'
         }
     ]
@@ -51,7 +52,7 @@ export default function Navbar() {
                     <h1 className={"text-3xl ml-2 text-pink-300"}>Benkyo</h1>
                 </a>
             </Link>
-            <div className={"flex"}>
+            <div className={"flex items-center"}>
                 <div className={"mr-5"}>
                     <Dropdown value={locale} options={options} onChange={value => setLocale(value)}/>
                 </div>

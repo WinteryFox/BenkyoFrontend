@@ -11,7 +11,7 @@
     "@tailwindcss/forms": "^0.4.0",
     "aws-amplify": "^4.3.10",
     "axios": "^0.24.0",
-    "flagpack": "^1.0.5",
+    "country-flag-icons": "^1.4.26",
     "formik": "^2.2.9",
     "next": "^12.0.7",
     "next-i18next": "^8.8.0",
