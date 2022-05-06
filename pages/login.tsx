@@ -99,9 +99,9 @@ export default function Login() {
                       isSubmitting
                   }) => (
                     <form onSubmit={handleSubmit}
-                          className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow"}>
-                        <h3 className={"flex text-2xl font-bold mb-1"}>{t("welcome-back")}</h3>
-                        <h4 className={"flex text-sm mb-4 text-gray-500"}>{t("meet-again")}</h4>
+                          className={"z-10 flex flex-col rounded-3xl max-w-xs w-full p-8 bg-white shadow dark:bg-black"}>
+                        <h3 className={"flex text-2xl font-bold mb-1 dark:text-white"}>{t("welcome-back")}</h3>
+                        <h4 className={"flex mb-4 text-gray-500 dark:text-gray-400"}>{t("meet-again")}</h4>
 
                         <div className={"mb-4"}>
                             <Input id={"email"} value={values.email} onChange={handleChange} autocomplete={"username"}
@@ -123,13 +123,13 @@ export default function Login() {
                             </Input>
                         </div>
 
-                        <Button type={"submit"} disabled={isSubmitting} className={"text-white bg-violet-500 hover:shadow hover:shadow-violet-400 hover:bg-violet-400"}>
+                        <Button type={"submit"} disabled={isSubmitting} className={"text-white bg-violet-500 text-lg hover:shadow hover:shadow-violet-400 hover:bg-violet-400"}>
                             {t("login")}
                         </Button>
 
                         <div className={"flex mt-1"}>
                             <Link href={"/register"}>
-                                <a id={"register"} className={"text-xs mt-2 text-pink-500 hover:text-pink-400"}>{t("need-account")}</a>
+                                <a id={"register"} className={"mt-2 text-pink-500 hover:text-pink-400"}>{t("need-account")}</a>
                             </Link>
                         </div>
                     </form>)}
