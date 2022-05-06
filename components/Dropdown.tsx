@@ -14,7 +14,7 @@ export default function Dropdown(props: {
     const ref = useRef<HTMLDivElement>(null)
 
     return (
-        <div className="relative inline-block text-left rounded-full" tabIndex={0} onFocus={() => setExpanded(true)}
+        <div className="relative inline-block text-left rounded-full" tabIndex={0} role={"menu"} onFocus={() => setExpanded(true)}
              onClick={() => setExpanded(!isExpanded)} ref={ref}>
             <div
                 className="select-none cursor-pointer inline-flex border-gray-300 px-4 py-2 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"

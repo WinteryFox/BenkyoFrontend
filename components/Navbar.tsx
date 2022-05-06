@@ -23,21 +23,21 @@ export default function Navbar() {
         {
             label: (
                 <div className={"flex items-center"}>
-                    <Flag.US className={"h-4 rounded mr-2"}/> English
+                    <Flag.US className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> English
                 </div>
             ), value: 'en'
         },
         {
             label: (
                 <div className={"flex items-center"}>
-                    <Flag.NL className={"h-4 rounded mr-2"}/> Nederlands
+                    <Flag.NL className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> Nederlands
                 </div>
             ), value: 'nl'
         },
         {
             label: (
                 <div className={"flex items-center"}>
-                    <Flag.JP className={"h-4 rounded mr-2"}/> 日本語
+                    <Flag.JP className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> 日本語
                 </div>
             ), value: 'ja'
         }
