@@ -85,7 +85,7 @@ export default function Register() {
                             })
 
                             if (!result?.userConfirmed) {
-                                changeState(true) // TODO
+                                changeState(true) // TODO: What? Future Amy, pls figure out what past Amy meant
                             } else {
                                 await router.push("/login")
                             }
@@ -128,7 +128,7 @@ export default function Register() {
                             errors.password = t("password-rule-2")
                         else if (!/(?=.*[\^$*.\[\]{}()?\-“!@#%&/,><’:;|_~`])/.test(values.password))
                             errors.password = t("password-rule-3")
-                        else if (!/(?=.*[0-9])/.test(values.password))
+                        else if (!/(?=.*\d)/.test(values.password))
                             errors.password = t("password-rule-4")
 
                         if (!values.passwordVerify)

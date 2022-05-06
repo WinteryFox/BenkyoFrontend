@@ -15,7 +15,6 @@ import Head from "next/head"
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {useRouter} from "next/router";
 import Markdown from "../../components/Markdown";
-import DefaultErrorPage from "next/error"
 import {useSelector} from "react-redux";
 import {RootState} from "../../src/UserStore";
 import {languageFromCode} from "../../src/languages";
@@ -51,8 +50,8 @@ export default function Id() {
     const deleteDeckMutation = useMutation<void>(
         () => deleteDeck(id as string), {
             onSuccess: async () => {
-                await queryClient.invalidateQueries(['deck', id])
                 await router.push('/')
+                await queryClient.invalidateQueries(['deck', id])
             }
         })
 
@@ -65,17 +64,13 @@ export default function Id() {
         return "Loading..."
     if (deckQuery.error)
         return "Oops..."
-    if (!deckQuery.data)
-        return <DefaultErrorPage statusCode={404}/>
-    if (!cardsQuery.data)
-        return <DefaultErrorPage statusCode={404}/>
 
     return (
         <>
             <Head>
-                <title>{deckQuery.data.name} | Benkyo</title>
-                <meta name={"description"} content={deckQuery.data.description}/>
-                <meta property={"og:description"} content={deckQuery.data.description}/>
+                <title>{deckQuery.data?.name} | Benkyo</title>
+                <meta name={"description"} content={deckQuery.data?.description}/>
+                <meta property={"og:description"} content={deckQuery.data?.description}/>
             </Head>
 
             <div className={"w-full h-full flex justify-center dark:bg-black"}>
@@ -83,8 +78,8 @@ export default function Id() {
                     <div className={"flex flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
                         <div className={"relative w-[11em] h-[11em]"}>
                             <Image src={"/logo.svg"} alt={"Deck image"} layout={"fill"} className={"rounded-3xl"}/>
-                            <i className={`absolute -bottom-2 -right-2 fp fp-square rounded-full fp-lg ${deckQuery.data.targetLanguage.substr(3, 5).toLowerCase()}`}
-                               title={deckQuery.data.targetLanguage}/>
+                            <i className={`absolute -bottom-2 -right-2 fp fp-square rounded-full fp-lg ${deckQuery.data?.targetLanguage.substr(3, 5).toLowerCase()}`}
+                               title={deckQuery.data?.targetLanguage}/>
                         </div>
 
                         <div className={"flex flex-col md:flex-row lg:flex-col lg:w-full w-full mt-4"}>
@@ -94,7 +89,7 @@ export default function Id() {
                                 id={"delete-deck"}>
                                 {t("copy-link")} <i className={"material-icons"}>link</i>
                             </Button>
-                            {user != null && deckQuery.data.author == user.id && (
+                            {user != null && deckQuery.data?.author == user.id && (
                                 <>
                                     <Button
                                         className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 lg:mr-0 mr-1.5 bg-gray-200 hover:bg-gray-400 active:bg-gray-300 active:active:scale-95 hover:text-white hover:shadow-lg hover:shadow-gray-500/30 transition-all dark:active:bg-gray-600 dark:text-white dark:bg-gray-900 dark:hover:bg-gray-700"}
@@ -118,25 +113,25 @@ export default function Id() {
                             <div className={"flex w-full justify-between items-center"}>
                                 <div className={"flex w-full flex-col"}>
                                     <div className={"text-xs text-gray-400 italic dark:text-gray-300"}>
-                                        {t("created-at", {date: new Date(deckQuery.data.createdAt).toLocaleDateString()})}
+                                        {t("created-at", {date: new Date(deckQuery.data!.createdAt).toLocaleDateString()})}
                                     </div>
 
                                     <div className={"flex text-4xl font-semibold dark:text-white"} tabIndex={0}>
-                                        {deckQuery.data.name}
+                                        {deckQuery.data!.name}
                                     </div>
 
                                     <div className={"flex flex-col md:flex-row mt-1 text-lg mb-3 dark:text-black"}>
                                         <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
                                              tabIndex={0}>
-                                            {languageFromCode(deckQuery.data.sourceLanguage, translation.i18n.language)}
+                                            {languageFromCode(deckQuery.data!.sourceLanguage, translation.i18n.language)}
                                         </div>
                                         <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
                                              tabIndex={0}>
-                                            {languageFromCode(deckQuery.data.targetLanguage, translation.i18n.language)}
+                                            {languageFromCode(deckQuery.data!.targetLanguage, translation.i18n.language)}
                                         </div>
                                         <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 dark:text-white dark:bg-emerald-700"}
                                              tabIndex={0}>
-                                            {t("word-list", {count: cardsQuery.data.cards.length})}
+                                            {t("word-list", {count: cardsQuery.data?.cards.length ?? 0})}
                                         </div>
                                     </div>
                                 </div>
@@ -145,11 +140,11 @@ export default function Id() {
 
                         <div tabIndex={0} className={"leading-5 dark:text-white"}>
                             <Markdown>
-                                {deckQuery.data.description}
+                                {deckQuery.data!.description}
                             </Markdown>
                         </div>
 
-                        {!cardsQuery.isLoading &&
+                        {cardsQuery.isLoading ? "Loading..." :
                             <>
                                 <div className={"w-full mt-4"}>
                                     <Button
@@ -167,7 +162,8 @@ export default function Id() {
                                             <thead>
                                             <tr>
                                                 {cardsQuery.data?.columns.map((column: ColumnData) =>
-                                                    <th key={column.id} className={"text-left py-2 px-4"} tabIndex={0}>
+                                                    <th key={column.id} className={"text-left py-2 px-4"}
+                                                        tabIndex={0}>
                                                         {column.name}
                                                     </th>
                                                 )}
@@ -179,7 +175,7 @@ export default function Id() {
 
                                 <table className={"text-lg mb-3 mt-0 table-fixed w-full dark:text-white"}>
                                     <tbody>
-                                    {cardsQuery.data.cards.sort((a, b) => a.ordinal > b.ordinal ? 1 : -1).map((card) =>
+                                    {cardsQuery.data!.cards.sort((a, b) => a.ordinal > b.ordinal ? 1 : -1).map((card) =>
                                         <tr key={card.id}>
                                             {card.data.sort((a, b) => a.ordinal > b.ordinal ? 1 : -1).map((data) =>
                                                 <td key={data.column} className={"py-2 px-4"} tabIndex={0}>

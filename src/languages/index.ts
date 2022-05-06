@@ -1,6 +1,6 @@
 export function languageFromCode(
     code: string,
-    displayLanguage: string = window.navigator.language
+    displayLanguage: string
 ): string | undefined {
     try {
         return new Intl.DisplayNames([displayLanguage], {
