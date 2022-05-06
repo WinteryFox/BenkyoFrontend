@@ -1,4 +1,4 @@
-import {ReactNode, useState} from "react";
+import {ReactNode, useRef, useState} from "react";
 
 export interface Option {
     label: ReactNode,
@@ -11,9 +11,11 @@ export default function Dropdown(props: {
     value: string
 }) {
     const [isExpanded, setExpanded] = useState<boolean>(false)
+    const ref = useRef<HTMLDivElement>(null)
 
     return (
-        <div className="relative inline-block text-left" onClick={() => setExpanded(!isExpanded)}>
+        <div className="relative inline-block text-left rounded-full" tabIndex={0} onFocus={() => setExpanded(true)}
+             onClick={() => setExpanded(!isExpanded)} ref={ref}>
             <div
                 className="select-none cursor-pointer inline-flex border-gray-300 px-4 py-2 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                 id="menu-button" aria-expanded="true" aria-haspopup="true">
@@ -32,12 +34,12 @@ export default function Dropdown(props: {
                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex={-1}>
                     <div role="none">
                         {props.options.map(option => (
-                            <a key={option.value}
-                               className="text-gray-700 dark:text-white dark:text-white-700 block p-2 rounded select-none hover:bg-gray-200 dark:hover:bg-gray-600 hover:cursor-pointer"
-                               role="menuitem" tabIndex={-1}
-                               id={option.value} onClick={() => props.onChange(option)}>
+                            <button key={option.value}
+                                    className="w-full text-gray-700 dark:text-white dark:text-white-700 block p-2 rounded select-none hover:bg-gray-200 dark:hover:bg-gray-600 hover:cursor-pointer"
+                                    role="menuitem" tabIndex={0}
+                                    id={option.value} onClick={() => props.onChange(option)}>
                                 {option.label}
-                            </a>
+                            </button>
                         ))}
                     </div>
                 </div>}

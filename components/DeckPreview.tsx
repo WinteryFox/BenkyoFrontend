@@ -14,8 +14,7 @@ export default function DeckPreview(props: {
                 <div className={"flex justify-center"}>
                     <div className={"relative w-32 h-32"}>
                         <Image src={"/logo.svg"} alt={"Deck image"} layout={"fill"} className={"rounded-3xl"}/>
-                        <i className={`absolute -bottom-2 -right-2 fp fp-square rounded-full fp-lg ${props.deck.targetLanguage.substr(3, 5).toLowerCase()}`}
-                           title={props.deck.targetLanguage}/>
+                        <i className={`flag:${props.deck.targetLanguage.slice(3, 5).toUpperCase()} absolute -bottom-2 -right-2 text-4xl shadow rounded-full`}/>
                     </div>
                 </div>
                 <div className={"font-semibold text-xl"}>
