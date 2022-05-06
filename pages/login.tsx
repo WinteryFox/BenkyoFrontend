@@ -99,10 +99,13 @@ export default function Login() {
                       isSubmitting
                   }) => (
                     <form onSubmit={handleSubmit}
-                          className={"z-10 flex flex-col rounded-3xl max-w-xs w-full p-8 bg-white shadow dark:bg-black"}>
-                        <h3 className={"flex text-2xl font-bold mb-1 dark:text-white"}>{t("welcome-back")}</h3>
-                        <h4 className={"flex mb-4 text-gray-500 dark:text-gray-400"}>{t("meet-again")}</h4>
-
+                          className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow dark:bg-black"}>
+                        <div className={"flex justify-center"}>
+                            <h3 className={"flex text-2xl font-bold mb-1 dark:text-white"}>{t("welcome-back")}</h3>
+                        </div>
+                        <div className={"flex justify-center"}>
+                             <h4 className={"flex mb-4 text-gray-500 dark:text-gray-400"}>{t("meet-again")}</h4>
+                        </div>
                         <div className={"mb-4"}>
                             <Input id={"email"} value={values.email} onChange={handleChange} autocomplete={"username"}
                                    error={!!errors.email && touched.email} type={"email"}>

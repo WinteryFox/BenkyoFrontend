@@ -3,12 +3,10 @@ import Link from 'next/link'
 import {useTranslation} from "next-i18next";
 import {RootState} from "../src/UserStore";
 import {useSelector} from "react-redux";
-import React,{useState} from "react";
 
 export default function Navbar() {
     const {t} = useTranslation()
     const user = useSelector((state: RootState) => state.userState.user)
-    const [ show, setShow ] = useState(true)
 
     return (
         <nav
@@ -23,7 +21,7 @@ export default function Navbar() {
                 {user == null ?
 
                     <Link href={"/login"}>
-                        <a id={"login"} className={"px-5 py-2 rounded-full text-lg border border-pink-300 bg-pink-200 hover:bg-pink-100 hover:shadow-lg hover:shadow-pink-500/30 dark:bg-pink-300 dark:hover:bg-pink-300/90"}>
+                        <a id={"login"} className={"px-5 py-2 rounded-full border border-pink-200 bg-pink-100 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-500/30 dark:bg-pink-300 dark:hover:bg-pink-300/90"}>
                             {t("login")}
                         </a>
                     </Link> :

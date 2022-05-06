@@ -75,10 +75,6 @@
     .btn.btn-icon {
         @apply justify-between px-4;
     }
-
-    .btn-violet {
-        @apply btn text-white bg-violet-500 hover:shadow hover:shadow-violet-400 hover:bg-violet-400
-    }
 }
 
 *:focus-visible {
