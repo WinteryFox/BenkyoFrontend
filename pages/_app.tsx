@@ -21,8 +21,14 @@ Amplify.configure({
 
 const queryClient = new QueryClient()
 
-function Benkyo({Component, pageProps}: AppProps) {
+function Benkyo({Component, pageProps, router}: AppProps) {
+    const {pathname, asPath, query} = router
+
     useEffect(() => {
+        const locale = window.localStorage.getItem("locale")
+        if (locale != null)
+            router.push({pathname, query}, asPath, {locale: locale}).then()
+
         getSelf().then((user) => store.dispatch(set(user))).catch(() => {
         })
     })

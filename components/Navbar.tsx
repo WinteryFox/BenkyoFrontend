@@ -16,6 +16,7 @@ export default function Navbar() {
     const [locale] = useState<string>(translation.i18n.language)
 
     async function setLocale(option: Option) {
+        window.localStorage.setItem("locale", option.value)
         await router.push({pathname, query}, asPath, {locale: option.value})
     }
 
