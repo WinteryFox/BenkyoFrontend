@@ -49,7 +49,7 @@ export default function Navbar() {
             <Link href={"/"}>
                 <a className={"flex items-center"} tabIndex={0}>
                     <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
-                    <h1 className={"text-3xl ml-2 text-pink-300"}>Benkyo</h1>
+                    <h1 className={"text-3xl ml-2 dark:text-white"}>Benkyo</h1>
                 </a>
             </Link>
             <div className={"flex items-center"}>
