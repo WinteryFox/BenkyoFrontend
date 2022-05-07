@@ -30,6 +30,13 @@ export default function Navbar() {
         {
             label: (
                 <div className={"flex items-center"}>
+                    <Flag.DE className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> Deutsch
+                </div>
+            ), value: 'de'
+        },
+        {
+            label: (
+                <div className={"flex items-center"}>
                     <Flag.NL className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> Nederlands
                 </div>
             ), value: 'nl'

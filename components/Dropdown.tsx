@@ -30,7 +30,7 @@ export default function Dropdown(props: {
 
             {isExpanded &&
                 <div
-                    className="origin-top-right absolute right-0 w-40 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="origin-top-right absolute right-0 w-40 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex={-1}>
                     <div role="none">
                         {props.options.map(option => (
