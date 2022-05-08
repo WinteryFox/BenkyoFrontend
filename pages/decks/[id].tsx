@@ -78,28 +78,21 @@ export default function Id() {
                     <div className={"flex flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
                         <div className={"relative w-[11em] h-[11em]"}>
                             <Image src={"/logo.svg"} alt={"Deck image"} layout={"fill"} className={"rounded-3xl"}/>
-                            <i className={`absolute -bottom-2 -right-2 fp fp-square rounded-full fp-lg ${deckQuery.data?.targetLanguage.substr(3, 5).toLowerCase()}`}
-                               title={deckQuery.data?.targetLanguage}/>
+                            <i className={`flag:${deckQuery.data!.targetLanguage.slice(3, 5).toUpperCase()} absolute -bottom-2 -right-2 text-4xl shadow rounded-full`}/>
                         </div>
 
                         <div className={"flex flex-col md:flex-row lg:flex-col lg:w-full w-full mt-4"}>
-                            <Button
-                                className={"flex lg:mr-0 mr-1.5 btn-icon bg-violet-200 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:active:bg-violet-600 dark:text-white dark:bg-gray-900 hover:bg-violet-800"}
-                                onClick={() => {navigator.clipboard.writeText(window.location.href).then()}}
-                                id={"delete-deck"}>
-                                {t("copy-link")} <i className={"material-icons"}>link</i>
-                            </Button>
                             {user != null && deckQuery.data?.author == user.id && (
                                 <>
                                     <Button
-                                        className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 lg:mr-0 mr-1.5 bg-gray-200 hover:bg-gray-400 active:bg-gray-300 active:active:scale-95 hover:text-white hover:shadow-lg hover:shadow-gray-500/30 transition-all dark:active:bg-gray-600 dark:text-white dark:bg-gray-900 dark:hover:bg-gray-700"}
+                                        className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 lg:mr-0 mr-1.5 bg-amber-100 hover:bg-orange-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-cyan-600 dark:hover:bg-cyan-700"}
                                         onClick={() => {
                                         }}
-                                        id={"delete-deck"}>
+                                        id={"edit-deck"}>
                                         {t("edit")} <i className={"material-icons"}>edit</i>
                                     </Button>
                                     <Button
-                                        className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 items-center bg-rose-200 hover:bg-rose-500 active:bg-rose-400 active:active:scale-95 hover:text-white hover:shadow-lg hover:shadow-rose-500/30 transition-all dark:text-white dark:active:bg-rose-600 dark:hover:bg-rose-700 dark:bg-rose-900"}
+                                        className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 items-center bg-rose-200 hover:bg-rose-700 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-rose-600 dark:hover:bg-rose-700"}
                                         onClick={() => deleteDeckMutation.mutate()}
                                         id={"delete-deck"}>
                                         {t("delete")} <i className={"material-icons"}>delete</i>
@@ -149,7 +142,7 @@ export default function Id() {
                                 <div className={"w-full mt-4"}>
                                     <Button
                                         id={"study"}
-                                        className={"text-white text-lg bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-lg hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-800 dark:hover:bg-violet-700"}
+                                        className={"text-white text-lg bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-lg hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-600 dark:hover:bg-violet-700"}
                                         onClick={() => router.push(`/study/${id}`)}
                                         disabled={cardsQuery.data!.cards.length == 0}>
                                         {t("start-deck")}

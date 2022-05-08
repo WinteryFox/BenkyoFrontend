@@ -28,10 +28,15 @@ function Benkyo({Component, pageProps, router}: AppProps) {
         const locale = window.localStorage.getItem("locale")
         if (locale != null)
             router.push({pathname, query}, asPath, {locale: locale}).then()
-
-        getSelf().then((user) => store.dispatch(set(user))).catch(() => {
-        })
-    })
+        getSelf()
+            .then((user) => {
+                store.dispatch(set(user))
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+        console.log("effect used")
+    }, [])
 
     return (
         <>

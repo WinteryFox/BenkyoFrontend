@@ -9,11 +9,11 @@ import {useState} from "react";
 import Flag from "country-flag-icons/react/3x2";
 
 export default function Navbar() {
-    const translation = useTranslation()
+    const {i18n, t} = useTranslation()
     const router = useRouter()
     const {pathname, asPath, query} = router
     const user = useSelector((state: RootState) => state.userState.user)
-    const [locale] = useState<string>(translation.i18n.language)
+    const [locale] = useState<string>(i18n.language)
 
     async function setLocale(option: Option) {
         window.localStorage.setItem("locale", option.value)
@@ -50,18 +50,18 @@ export default function Navbar() {
             <Link href={"/"}>
                 <a className={"flex items-center"} tabIndex={0}>
                     <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
-                    <h1 className={"text-3xl ml-2 dark:text-white"}>Benkyo</h1>
+                    <h1 className={"text-3xl ml-2 dark:text-white hidden md:block"}>Benkyo</h1>
                 </a>
             </Link>
             <div className={"flex items-center"}>
-                <div className={"mr-5"}>
+                <div className={"mr-2"}>
                     <Dropdown value={locale} options={options} onChange={value => setLocale(value)}/>
                 </div>
                 {user == null ?
                     <Link href={"/login"}>
                         <a id={"login"}
                            className={"px-5 py-2 rounded-full border border-pink-200 bg-pink-100 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-500/30 dark:bg-pink-300 dark:hover:bg-pink-300/90"}>
-                            {translation.t("login")}
+                            {t("login")}
                         </a>
                     </Link> :
                     <Link href={"/profile"}>
