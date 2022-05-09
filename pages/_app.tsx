@@ -35,7 +35,6 @@ function Benkyo({Component, pageProps, router}: AppProps) {
             .catch((e) => {
                 console.log(e)
             })
-        console.log("effect used")
     }, [])
 
     return (

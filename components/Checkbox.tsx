@@ -1,7 +1,7 @@
 import {ChangeEventHandler, ReactNode} from "react";
 
 export default function Checkbox(props: {
-    id: string,
+    id?: string | undefined,
     checked?: boolean | undefined,
     disabled?: boolean | undefined,
     onChange?: ChangeEventHandler<HTMLInputElement>,
