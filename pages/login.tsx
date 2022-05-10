@@ -45,7 +45,7 @@ export default function Login() {
     }
 
     return (
-        <div className={"flex items-center justify-center w-full h-full"}>
+        <div className={"flex items-center justify-center w-full h-screen"}>
             <Head>
                 <title>Benkyo | {t("login")}</title>
             </Head>

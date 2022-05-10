@@ -73,7 +73,7 @@ export default function Id() {
                 <meta property={"og:description"} content={deckQuery.data?.description}/>
             </Head>
 
-            <div className={"w-full h-full flex justify-center dark:bg-black"}>
+            <div className={"flex w-full h-full flex justify-center dark:bg-black"}>
                 <div className={"flex flex-col lg:flex-row pt-8 pb-4 px-10 lg:w-[1024px]"}>
                     <div className={"flex flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
                         <div className={"relative w-[11em] h-[11em]"}>
@@ -114,16 +114,19 @@ export default function Id() {
                                     </div>
 
                                     <div className={"flex flex-col md:flex-row mt-1 text-lg mb-3 dark:text-black"}>
-                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
-                                             tabIndex={0}>
+                                        <div
+                                            className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
+                                            tabIndex={0}>
                                             {languageFromCode(deckQuery.data!.sourceLanguage, translation.i18n.language)}
                                         </div>
-                                        <div className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
-                                             tabIndex={0}>
+                                        <div
+                                            className={"flex md:mb-0 mb-1.5 select-none bg-emerald-100 rounded-full px-5 py-1.5 md:mr-2 dark:text-white dark:bg-emerald-700"}
+                                            tabIndex={0}>
                                             {languageFromCode(deckQuery.data!.targetLanguage, translation.i18n.language)}
                                         </div>
-                                        <div className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 dark:text-white dark:bg-emerald-700"}
-                                             tabIndex={0}>
+                                        <div
+                                            className={"flex select-none bg-emerald-100 rounded-full px-5 py-1.5 dark:text-white dark:bg-emerald-700"}
+                                            tabIndex={0}>
                                             {t("word-list", {count: cardsQuery.data?.cards.length ?? 0})}
                                         </div>
                                     </div>
@@ -142,31 +145,25 @@ export default function Id() {
                                 <div className={"w-full mt-4"}>
                                     <Button
                                         id={"study"}
-                                        className={"text-white text-lg bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-lg hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-600 dark:hover:bg-violet-700"}
+                                        className={"mb-3 text-white text-lg bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-lg hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-600 dark:hover:bg-violet-700"}
                                         onClick={() => router.push(`/study/${id}`)}
                                         disabled={cardsQuery.data!.cards.length == 0}>
                                         {t("start-deck")}
                                     </Button>
                                 </div>
 
-                                <div className={"sticky top-0 dark:text-white"}>
-                                    <div className={"sticky top-2 rounded-full shadow mt-3 dark:border-white dark:shadow-gray-600"}>
-                                        <table className={"text-lg mb-0 table-fixed w-full border-collapse"}>
-                                            <thead>
-                                            <tr>
-                                                {cardsQuery.data?.columns.map((column: ColumnData) =>
-                                                    <th key={column.id} className={"text-left py-2 px-4"}
-                                                        tabIndex={0}>
-                                                        {column.name}
-                                                    </th>
-                                                )}
-                                            </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                </div>
+                                <table className={"table-fixed w-full"}>
+                                    <thead className={"sticky top-2 shadow border dark:border-white dark:shadow-gray-600 rounded-full text-lg"}>
+                                    <tr>
+                                        {cardsQuery.data?.columns.map((column: ColumnData) =>
+                                            <th key={column.id} className={"text-left py-2 px-4"}
+                                                tabIndex={0}>
+                                                {column.name}
+                                            </th>
+                                        )}
+                                    </tr>
+                                    </thead>
 
-                                <table className={"text-lg mb-3 mt-0 table-fixed w-full dark:text-white"}>
                                     <tbody>
                                     {cardsQuery.data!.cards.sort((a, b) => a.ordinal > b.ordinal ? 1 : -1).map((card) =>
                                         <tr key={card.id}>

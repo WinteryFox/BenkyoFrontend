@@ -1,8 +1,7 @@
 import '../styles/globals.css'
 import type {AppProps} from 'next/app'
-import Layout from "../components/Layout"
 import {appWithTranslation} from "next-i18next";
-import {Component, useEffect} from "react";
+import React, {Component, useEffect} from "react";
 import nextI18NextConfig from '../next-i18next.config.js';
 import {Provider} from "react-redux";
 import store, {set} from "../src/UserStore";
@@ -10,6 +9,7 @@ import {getSelf} from "../src/User";
 import Head from "next/head";
 import {QueryClient, QueryClientProvider} from "react-query";
 import Amplify from "aws-amplify";
+import Navbar from "../components/Navbar";
 
 Amplify.configure({
     Auth: {
@@ -44,9 +44,7 @@ function Benkyo({Component, pageProps, router}: AppProps) {
                 <title>Benkyo</title>
                 <link rel={"shortcut icon"} type={"image/svg"} href={"/logo.svg"}/>
 
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-                <meta name={"viewport"} content={"width=device-width, initial-scale=1.0, user-scalable=no"}/>
+                <meta name={"viewport"} content={"width=device-width,initial-scale=1.0,user-scalable=no"}/>
 
                 <meta property={"og:title"} content={"Benkyo"}/>
                 {/*TODO: Localize and edit descriptions (based on the page too)*/}
@@ -69,9 +67,10 @@ function Benkyo({Component, pageProps, router}: AppProps) {
 
             <Provider store={store}>
                 <QueryClientProvider client={queryClient}>
-                    <Layout>
+                    <Navbar/>
+                    <main>
                         <Component {...pageProps} />
-                    </Layout>
+                    </main>
                 </QueryClientProvider>
             </Provider>
         </>

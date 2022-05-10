@@ -46,7 +46,7 @@ export default function Navbar() {
 
     return (
         <nav
-            className={"flex sticky items-center w-full z-40 bg-white justify-between px-8 py-3 dark:bg-black"}>
+            className={"flex sticky items-center w-full z-40 justify-between px-8 py-3"}>
             <Link href={"/"}>
                 <a className={"flex items-center"} tabIndex={0}>
                     <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
@@ -60,7 +60,7 @@ export default function Navbar() {
                 {user == null ?
                     <Link href={"/login"}>
                         <a id={"login"}
-                           className={"px-5 py-2 rounded-full border border-pink-200 bg-pink-100 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-500/30 dark:bg-pink-300 dark:hover:bg-pink-300/90"}>
+                           className={"px-5 py-2 rounded-full border border-pink-200 bg-pink-100 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-500/30 dark:bg-pink-300 dark:hover:bg-pink-300/90 dark:text-black"}>
                             {t("login")}
                         </a>
                     </Link> :

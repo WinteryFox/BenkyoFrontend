@@ -67,7 +67,7 @@ export default function Register() {
         )
     else
         return (
-            <div className={"flex items-center justify-center w-full h-full dark:text-white"}>
+            <div className={"flex items-center justify-center w-full h-screen dark:text-white"}>
                 <Head>
                     <title>Benkyo | {t("register")}</title>
                 </Head>

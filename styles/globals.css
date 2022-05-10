@@ -90,6 +90,7 @@
 }
 
 body {
+    @apply dark:bg-black dark:text-white;
     text-rendering: optimizeLegibility;
     line-height: 1.15;
 }
