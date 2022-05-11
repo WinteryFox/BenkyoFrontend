@@ -135,9 +135,7 @@ export default function Id() {
                         </div>
 
                         <div tabIndex={0} className={"leading-5 dark:text-white"}>
-                            <Markdown>
-                                {deckQuery.data!.description}
-                            </Markdown>
+                            <Markdown source={deckQuery.data!.description}/>
                         </div>
 
                         {cardsQuery.isLoading ? "Loading..." :
