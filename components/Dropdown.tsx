@@ -29,7 +29,7 @@ export default function Dropdown(props: {
             <div
                 className="select-none cursor-pointer inline-flex border-gray-300 px-4 py-2 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                 id="menu-button" aria-expanded="true" aria-haspopup="true">
-                {props.children == undefined ? props.options.find(v => v.value == props.value)!.label : props.children}
+                {props.children == undefined ? props.options.find(v => v.value == props.value)?.label : props.children}
                 <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                      fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd"
