@@ -147,7 +147,7 @@ export default function Register() {
                           isSubmitting
                       }) => (
                         <form onSubmit={handleSubmit}
-                              className={"z-10 flex flex-col rounded-3xl max-w-md w-full p-8 bg-white shadow dark:bg-black"}>
+                              className={"z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-3xl max-w-lg w-full p-8 bg-white shadow dark:bg-black"}>
                             <h3 className={"flex justify-center text-2xl font-bold mb-4"}>{t("account-creation")}</h3>
 
                             <div className="mb-4">

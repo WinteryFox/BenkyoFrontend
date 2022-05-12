@@ -35,7 +35,7 @@ export default function Home() {
         return <DefaultErrorPage statusCode={404}/>
 
     return (
-        <div className={"flex flex-wrap m-6 md:mx-20 justify-center w-full"}>
+        <div className={"flex flex-wrap m-6 md:mx-20 justify-center"}>
             {data.decks?.map((deck) => (
                 <DeckPreview key={deck.id.toString()} deck={deck}/>
             ))}

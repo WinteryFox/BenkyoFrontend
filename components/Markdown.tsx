@@ -2,7 +2,7 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import {useRemark} from "react-remark";
 import Checkbox from "./Checkbox";
-import {HTMLProps, useEffect} from "react";
+import {ComponentProps, HTMLProps, useEffect} from "react";
 
 export default function Markdown(props: {
     source: string
@@ -18,7 +18,8 @@ export default function Markdown(props: {
                         default:
                             return <input type={props.type} {...props}/>
                     }
-                }
+                },
+                a: (props: ComponentProps<any>) => <a target={"_blank"} {...props}/>
             }
         }
     })
@@ -26,7 +27,7 @@ export default function Markdown(props: {
     useEffect(() => setSource(props.source), [setSource, props.source])
 
     return (
-        <div className={"prose prose-a:text-pink-500 hover:prose-a:text-pink-400 max-w-none dark:prose-invert"}>
+        <div className={"prose prose-a:no-underline prose-a:text-pink-500 hover:prose-a:text-pink-400 max-w-none dark:prose-invert"}>
             {markdown}
         </div>
     )

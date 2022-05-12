@@ -73,7 +73,7 @@ export default function Id() {
                 <meta property={"og:description"} content={deckQuery.data?.description}/>
             </Head>
 
-            <div className={"flex w-full h-full flex justify-center dark:bg-black"}>
+            <div className={"flex w-full h-full justify-center dark:bg-black"}>
                 <div className={"flex flex-col lg:flex-row pt-8 pb-4 px-10 lg:w-[1024px]"}>
                     <div className={"flex flex-col items-center md:p-3 pb-3 rounded-xl md:mr-4 shrink-0"}>
                         <div className={"relative w-[11em] h-[11em]"}>
@@ -154,7 +154,7 @@ export default function Id() {
                                     <thead className={"sticky top-2 shadow border dark:border-white dark:shadow-gray-600 rounded-full text-lg"}>
                                     <tr>
                                         {cardsQuery.data?.columns.map((column: ColumnData) =>
-                                            <th key={column.id} className={"text-left py-2 px-4"}
+                                            <th key={column.id} className={"text-left p-2 break-words"}
                                                 tabIndex={0}>
                                                 {column.name}
                                             </th>
@@ -166,7 +166,7 @@ export default function Id() {
                                     {cardsQuery.data!.cards.sort((a, b) => a.ordinal > b.ordinal ? 1 : -1).map((card) =>
                                         <tr key={card.id}>
                                             {card.data.sort((a, b) => a.ordinal > b.ordinal ? 1 : -1).map((data) =>
-                                                <td key={data.column} className={"py-2 px-4"} tabIndex={0}>
+                                                <td key={data.column} className={"p-2 break-words"} tabIndex={0}>
                                                     {data.src.join("; ")}
                                                 </td>
                                             )}
