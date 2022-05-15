@@ -155,8 +155,8 @@ export default function Register() {
                                        autocomplete={"username"} error={!!errors.email && touched.email}>
                                     {t("email")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.email && touched.email && errors.email}
-                                </span>
+                                        {errors.email && touched.email && errors.email}
+                                    </span>
                                 </Input>
                             </div>
 
@@ -164,8 +164,8 @@ export default function Register() {
                                 <Input id={"username"} value={values.username} onChange={handleChange} error={!!errors.username && touched.username}>
                                     {t("username")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.username && touched.username && errors.username}
-                                </span>
+                                        {errors.username && touched.username && errors.username}
+                                    </span>
                                 </Input>
                             </div>
 
@@ -174,8 +174,8 @@ export default function Register() {
                                        onChange={handleChange} autocomplete={"new-password"} error={!!errors.password && touched.password}>
                                     {t("password")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.password && touched.password && errors.password}
-                                </span>
+                                        {errors.password && touched.password && errors.password}
+                                    </span>
                                 </Input>
                             </div>
 
@@ -184,8 +184,8 @@ export default function Register() {
                                        onChange={handleChange} error={!!errors.passwordVerify && touched.passwordVerify}>
                                     {t("verify-password")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.passwordVerify && touched.passwordVerify && errors.passwordVerify}
-                                </span>
+                                        {errors.passwordVerify && touched.passwordVerify && errors.passwordVerify}
+                                    </span>
                                 </Input>
                             </div>
 

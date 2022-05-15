@@ -42,8 +42,9 @@ function Benkyo({Component, pageProps, router}: AppProps) {
             <Head>
                 <title>Benkyo</title>
                 <link rel={"shortcut icon"} type={"image/svg"} href={"/logo.svg"}/>
+                <link rel={"stylesheet"} href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 
-                <meta name={"viewport"} content={"width=device-width,initial-scale=1.0,user-scalable=no"}/>
+                <meta name={"viewport"} content={"width=device-width,initial-scale=1.0,user-scalable=yes"}/>
 
                 <meta property={"og:title"} content={"Benkyo"}/>
                 {/*TODO: Localize and edit descriptions (based on the page too)*/}

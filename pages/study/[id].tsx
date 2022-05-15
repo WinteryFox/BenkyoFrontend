@@ -42,7 +42,8 @@ export default function Study() {
     const router = useRouter()
     const {id} = router.query
 
-    const {isLoading, error, data} = useQuery<Props>(
+    return "hello"
+    /*const {isLoading, error, data} = useQuery<Props>(
         `study_${id}`,
         async () => {
             const deck = await getDeck(id! as string)
@@ -74,11 +75,11 @@ export default function Study() {
     if (!data || !data.deck || !data.cards)
         return <DefaultErrorPage statusCode={404}/>
 
-    /*useEffect(() => {
+    /!*useEffect(() => {
         setResults(prevState => [...prevState, {
             card: currentCard.id,
         }])
-    }, [currentCard])*/
+    }, [currentCard])*!/
 
     async function handleEnter() {
         if (currentCard == null)
@@ -167,5 +168,5 @@ export default function Study() {
                     </div>}
             </div>
         </>
-    )
+    )*/
 }

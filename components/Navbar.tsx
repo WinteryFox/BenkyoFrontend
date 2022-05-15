@@ -7,6 +7,7 @@ import Dropdown, {Option} from "./Dropdown";
 import {useRouter} from "next/router";
 import {useState} from "react";
 import Flag from "country-flag-icons/react/3x2";
+import logo from "../public/logo.svg";
 
 export default function Navbar() {
     const {i18n, t} = useTranslation()
@@ -49,7 +50,7 @@ export default function Navbar() {
             className={"flex sticky items-center w-full z-40 justify-between px-8 py-3"}>
             <Link href={"/"}>
                 <a className={"flex items-center"} tabIndex={0}>
-                    <Image src={"/logo.svg"} alt={"Logo"} width={"36px"} height={"36px"}/>
+                    <Image src={logo} alt={"Logo"} width={"32px"} height={"32px"} priority/>
                     <h1 className={"text-3xl ml-2 dark:text-white hidden md:block"}>Benkyo</h1>
                 </a>
             </Link>
