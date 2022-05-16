@@ -67,7 +67,7 @@ export default function Register() {
         )
     else
         return (
-            <div className={"flex items-center justify-center w-full h-full dark:text-white"}>
+            <div className={"flex items-center justify-center w-full h-screen dark:text-white"}>
                 <Head>
                     <title>Benkyo | {t("register")}</title>
                 </Head>
@@ -147,7 +147,7 @@ export default function Register() {
                           isSubmitting
                       }) => (
                         <form onSubmit={handleSubmit}
-                              className={"z-10 flex flex-col rounded-3xl max-w-md w-full p-8 bg-white shadow dark:bg-black"}>
+                              className={"z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-3xl max-w-lg w-full p-8 bg-white shadow dark:bg-black"}>
                             <h3 className={"flex justify-center text-2xl font-bold mb-4"}>{t("account-creation")}</h3>
 
                             <div className="mb-4">
@@ -155,8 +155,8 @@ export default function Register() {
                                        autocomplete={"username"} error={!!errors.email && touched.email}>
                                     {t("email")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.email && touched.email && errors.email}
-                                </span>
+                                        {errors.email && touched.email && errors.email}
+                                    </span>
                                 </Input>
                             </div>
 
@@ -164,8 +164,8 @@ export default function Register() {
                                 <Input id={"username"} value={values.username} onChange={handleChange} error={!!errors.username && touched.username}>
                                     {t("username")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.username && touched.username && errors.username}
-                                </span>
+                                        {errors.username && touched.username && errors.username}
+                                    </span>
                                 </Input>
                             </div>
 
@@ -174,8 +174,8 @@ export default function Register() {
                                        onChange={handleChange} autocomplete={"new-password"} error={!!errors.password && touched.password}>
                                     {t("password")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.password && touched.password && errors.password}
-                                </span>
+                                        {errors.password && touched.password && errors.password}
+                                    </span>
                                 </Input>
                             </div>
 
@@ -184,8 +184,8 @@ export default function Register() {
                                        onChange={handleChange} error={!!errors.passwordVerify && touched.passwordVerify}>
                                     {t("verify-password")}*
                                     <span className={"ml-1 text-xs"}>
-                                    {errors.passwordVerify && touched.passwordVerify && errors.passwordVerify}
-                                </span>
+                                        {errors.passwordVerify && touched.passwordVerify && errors.passwordVerify}
+                                    </span>
                                 </Input>
                             </div>
 

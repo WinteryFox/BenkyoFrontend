@@ -9,6 +9,7 @@ export default function Input(props: {
     autocomplete?: string
     error?: boolean
     children?: ReactNode
+    name?: string
 }) {
     function onKeyPress(event: KeyboardEvent<HTMLInputElement>) {
         if (event.key == "Enter")
@@ -22,7 +23,7 @@ export default function Input(props: {
             {props.children}
             <input
                 className={`${props.error ? "border-red-500" : ""} shadow border border-gray-200 text-black text-base border rounded-full w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline focus:border-violet-500 transition-colors duration-150 dark:text-white dark:bg-black dark:border-gray-600`}
-                id={props.id} type={props.type} name={props.id} value={props.value} autoComplete={props.autocomplete}
+                id={props.id} type={props.type} name={props.name} value={props.value} autoComplete={props.autocomplete}
                 onChange={(event) => props.onChange(event)} onKeyPress={onKeyPress} required/>
         </label>
     )

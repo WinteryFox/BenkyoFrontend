@@ -1,7 +1,15 @@
 import axios, {Method} from "axios";
 import {Auth} from "aws-amplify"
 
-const baseUrl = "http://localhost:8282/api"
+export const baseUrl = process.env.NODE_ENV === "production" ? "http://localhost:8282/api" : "http://localhost:8282/api"
+
+export function getDeckImage(image: string | null | undefined) {
+    if (image == null)
+        return "/logo.svg"
+    else
+        return `${baseUrl}/assets/decks/${image}`
+}
+
 const client = axios.create({
     baseURL: baseUrl
 })

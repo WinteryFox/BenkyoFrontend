@@ -1,35 +1,34 @@
-import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm";
-import remarkBreaks from "remark-breaks";
 import remarkParse from "remark-parse";
+import {useRemark} from "react-remark";
 import Checkbox from "./Checkbox";
+import {ComponentProps, HTMLProps, useEffect} from "react";
 
 export default function Markdown(props: {
-    children: string
+    source: string
 }) {
-    return (
-        <div>
-            <ReactMarkdown remarkPlugins={[remarkParse, remarkGfm, remarkBreaks]} components={{
-                a: (node) =>
-                    <a href={node.href} className={"text-pink-500 hover:text-pink-400"}>{node.children}</a>,
-                input: (node) => {
-                    switch (node.type) {
+    const [markdown, setSource] = useRemark({
+        remarkPlugins: [remarkGfm, remarkParse],
+        rehypeReactOptions: {
+            components: {
+                input: (props: HTMLProps<HTMLInputElement> & { node?: Node }) => {
+                    switch (props.type) {
                         case "checkbox":
-                            return <Checkbox id={""} checked={node.checked}/>
+                            return <Checkbox checked={props.checked} disabled={true}/>
                         default:
-                            return <input type={node.type}/>
+                            return <input type={props.type} {...props}/>
                     }
                 },
-                ol: (node) => <ol className={"list-disc list-inside"} role={"list"}>{node.children}</ol>,
-                ul: (node) => <ul className={"list-disc list-inside"} role={"list"}>{node.children}</ul>,
-                h1: (node) => <h1 className={"text-3xl font-semibold"}>{node.children}</h1>,
-                h2: (node) => <h1 className={"text-2xl font-semibold"}>{node.children}</h1>,
-                h3: (node) => <h1 className={"text-xl font-semibold"}>{node.children}</h1>,
-                h4: (node) => <h1 className={"text-lg font-semibold"}>{node.children}</h1>,
-                h5: (node) => <h1 className={"text-base font-semibold"}>{node.children}</h1>
-            }}>
-                {props.children}
-            </ReactMarkdown>
+                a: (props: ComponentProps<any>) => <a target={"_blank"} {...props}/>
+            }
+        }
+    })
+
+    useEffect(() => setSource(props.source), [setSource, props.source])
+
+    return (
+        <div className={"prose prose-a:no-underline prose-a:text-pink-500 hover:prose-a:text-pink-400 max-w-none dark:prose-invert"}>
+            {markdown}
         </div>
     )
 }

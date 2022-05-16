@@ -45,7 +45,7 @@ export default function Login() {
     }
 
     return (
-        <div className={"flex items-center justify-center w-full h-full"}>
+        <div className={"flex items-center justify-center w-full"}>
             <Head>
                 <title>Benkyo | {t("login")}</title>
             </Head>
@@ -99,12 +99,12 @@ export default function Login() {
                       isSubmitting
                   }) => (
                     <form onSubmit={handleSubmit}
-                          className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow dark:bg-black"}>
+                          className={"z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-3xl max-w-lg w-full p-8 bg-white shadow dark:bg-black"}>
                         <div className={"flex justify-center"}>
                             <h3 className={"flex text-2xl font-bold mb-1 dark:text-white"}>{t("welcome-back")}</h3>
                         </div>
                         <div className={"flex justify-center"}>
-                             <h4 className={"flex mb-4 text-gray-500 dark:text-gray-400"}>{t("meet-again")}</h4>
+                            <h4 className={"flex mb-4 text-gray-500 dark:text-gray-400"}>{t("meet-again")}</h4>
                         </div>
                         <div className={"mb-4"}>
                             <Input id={"email"} value={values.email} onChange={handleChange} autocomplete={"username"}
@@ -126,13 +126,15 @@ export default function Login() {
                             </Input>
                         </div>
 
-                        <Button type={"submit"} disabled={isSubmitting} className={"text-white bg-violet-500 text-lg hover:shadow hover:shadow-violet-400 hover:bg-violet-400"}>
+                        <Button type={"submit"} disabled={isSubmitting}
+                                className={"text-white bg-violet-500 text-lg hover:shadow hover:shadow-violet-400 hover:bg-violet-400"}>
                             {t("login")}
                         </Button>
 
                         <div className={"flex mt-1"}>
                             <Link href={"/register"}>
-                                <a id={"register"} className={"mt-2 text-pink-500 hover:text-pink-400"}>{t("need-account")}</a>
+                                <a id={"register"}
+                                   className={"mt-2 text-pink-500 hover:text-pink-400"}>{t("need-account")}</a>
                             </Link>
                         </div>
                     </form>)}
