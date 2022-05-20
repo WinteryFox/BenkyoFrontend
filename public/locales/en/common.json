@@ -40,6 +40,9 @@
   "question": "Question",
   "answers": "Answers",
   "edit": "Edit",
+  "cancel": "Cancel",
   "delete": "Delete",
+  "delete-title-prompt":"Delete Deck",
+  "delete-desc-prompt":"Are you sure you want to remove this deck?",
   "copy-link": "Copy link"
 }
