@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --loading-bg: #e3e3e3;
+    --loading-bg-dark: #333333;
+    --loading-highlight: #f4f4f4;
+    --loading-highlight-dark: #424242;
+}
+
 @layer base {
     @font-face {
         font-family: Whitney;
@@ -139,4 +146,38 @@ tr:hover td:first-child {
 
 tr:hover td:last-child {
     @apply border-r-violet-500;
+}
+
+@media (prefers-reduced-motion: reduce) and (prefers-color-scheme: light) {
+    .loading {
+        background: var(--loading-bg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) and (prefers-color-scheme: dark) {
+    .loading {
+        background: var(--loading-bg-dark)
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: light) {
+    .loading {
+        background: linear-gradient(110deg, var(--loading-bg) 8%, var(--loading-highlight) 18%, var(--loading-bg) 33%);
+        background-size: 200% 500%;
+        animation: 2s shine linear infinite;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark) {
+    .loading {
+        background: linear-gradient(110deg, var(--loading-bg-dark) 8%, var(--loading-highlight-dark) 18%, var(--loading-bg-dark) 33%);
+        background-size: 200% 500%;
+        animation: 2s shine linear infinite;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
 }

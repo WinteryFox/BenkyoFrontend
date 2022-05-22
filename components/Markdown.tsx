@@ -27,7 +27,7 @@ export default function Markdown(props: {
     useEffect(() => setSource(props.source), [setSource, props.source])
 
     return (
-        <div className={"prose prose-a:no-underline prose-a:text-pink-500 hover:prose-a:text-pink-400 max-w-none dark:prose-invert"}>
+        <div className={"prose prose-sm md:prose-base prose-a:no-underline prose-a:text-pink-500 hover:prose-a:text-pink-400 max-w-none dark:prose-invert"}>
             {markdown}
         </div>
     )
