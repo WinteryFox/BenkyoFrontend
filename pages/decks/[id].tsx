@@ -89,7 +89,7 @@ export default function Id() {
                                 <ImageWithFallback src={getDeckImage(deckQuery.data?.imageHash)} placeholder={logo}
                                                    alt={"Deck image"} layout={"fill"} className={"rounded-3xl"}
                                                    priority/>
-                                <i className={`flag:${deckQuery.data!.targetLanguage.slice(3, 5).toUpperCase()} absolute -bottom-2 -right-2 text-4xl shadow rounded-full`}/>
+                                <i className={`border flag:${deckQuery.data!.targetLanguage.slice(3, 5).toUpperCase()} absolute -bottom-2 -right-2 text-4xl shadow rounded-full`}/>
                             </>}
                     </div>
 
