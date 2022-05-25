@@ -101,17 +101,26 @@ export default function Id() {
                                     id={"delete-deck"}>
                                     {t("delete")} <i className={"material-icons"}>delete</i>
                                 </Button>
-                                <Dialog
-                                    id={"dialog"}
-                                    leftBtn={"cancel"}
-                                    rightBtn={"delete"}
-                                    onClick={() => deleteDeckMutation.mutate()}>
+                                <Dialog id={"dialog"}>
                                     <div className={"text-2xl pb-2 font-bold dark:text-white"}>
                                         {t("delete-title-prompt")}
                                     </div>
                                     <div className={"pb-2 md:pb-5 text-lg dark:text-white"}>
                                         {t("delete-desc-prompt")}
                                     </div>
+                                    <form method="dialog">
+                                        <menu className={"flex space-x-3"}>
+                                            <Button
+                                                className={"flex text-lg mt-2 md:mt-0 lg:mt-2 items-center bg-gray-200 hover:bg-gray-400 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500/80"}>
+                                                {t("cancel")}
+                                            </Button>
+                                            <Button
+                                                className={"flex text-lg mt-2 md:mt-0 lg:mt-2 items-center bg-rose-200 hover:bg-rose-600 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-rose-600 dark:hover:bg-rose-600/80"}
+                                                onClick={() => deleteDeckMutation.mutate()}>
+                                                {t("delete")}
+                                            </Button>
+                                        </menu>
+                                    </form>
                                 </Dialog>
                             </>)}
                     </div>
