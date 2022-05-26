@@ -28,6 +28,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export default function Index() {
     const router = useRouter()
     const translation = useTranslation()
+    const {t} = translation
     const initialValues: CreateDeckRequest = {
         name: "",
         shortDescription: "",
@@ -73,19 +74,19 @@ export default function Index() {
                 const errors: FormikErrors<CreateDeckRequest> = {}
 
                 if (!values.name)
-                    errors.name = translation.t("required")
+                    errors.name = t("required")
 
                 if (!values.shortDescription)
-                    errors.shortDescription = translation.t("required")
+                    errors.shortDescription = t("required")
 
                 if (!values.description)
-                    errors.description = translation.t("required")
+                    errors.description = t("required")
 
                 if (!values.sourceLanguage)
-                    errors.sourceLanguage = translation.t("required")
+                    errors.sourceLanguage = t("required")
 
                 if (!values.targetLanguage)
-                    errors.targetLanguage = translation.t("required")
+                    errors.targetLanguage = t("required")
 
                 return errors
             }}>
@@ -101,25 +102,25 @@ export default function Index() {
                       className={"z-10 flex flex-col rounded-3xl max-w-lg w-full p-8 bg-white shadow-gray-400 shadow-sm dark:bg-black"}>
                     <Input id={"name"} value={values.name} onChange={handleChange}
                            error={!!errors.name && touched.name}>
-                        {translation.t("name")}
+                        {t("name")}
                         <span> {errors.name && touched.name && errors.name}</span>
                     </Input>
 
                     <Input id={"shortDescription"} value={values.shortDescription} onChange={handleChange}
                            error={!!errors.shortDescription && touched.shortDescription}>
-                        {translation.t("short-description")}
+                        {t("short-description")}
                         <span> {errors.shortDescription && touched.shortDescription && errors.shortDescription}</span>
                     </Input>
 
                     <TextArea id={"description"} value={values.description} onChange={handleChange}
                               error={!!errors.description && touched.description}>
-                        {translation.t("description")}
+                        {t("description")}
                         <span> {errors.description && touched.description && errors.description}</span>
                     </TextArea>
 
                     <Select id={"sourceLanguage"} value={values.sourceLanguage} onChange={handleChange}
                             error={!!errors.sourceLanguage && touched.sourceLanguage}
-                            label={translation.t("source-language")}>
+                            label={t("source-language")}>
                         {data!!.sort((a, b) => a.name.localeCompare(b.name))
                             .map(locale => (
                                 <Option key={locale.code} value={locale.code}>{locale.name}</Option>
@@ -128,19 +129,22 @@ export default function Index() {
 
                     <Select id={"targetLanguage"} value={values.targetLanguage} onChange={handleChange}
                             error={!!errors.targetLanguage && touched.targetLanguage}
-                            label={translation.t("target-language")}>
+                            label={t("target-language")}>
                         {data!!.sort((a, b) => a.name.localeCompare(b.name))
                             .map(locale => (
                                 <Option key={locale.code} value={locale.code}>{locale.name}</Option>
                             ))}
                     </Select>
+                    {t("target-language-2")}
 
                     <Checkbox id={"isPrivate"} checked={values.isPrivate} onChange={handleChange}>
-                        {translation.t("private")}
+                        {t("private")}
                     </Checkbox>
 
-                    <Button type={"submit"} className={"text-white text-md bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-md hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-800 dark:hover:bg-violet-700"} disabled={isSubmitting}>
-                        {translation.t("create-deck")}
+                    <Button type={"submit"}
+                            className={"text-white text-md bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-md hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-800 dark:hover:bg-violet-700"}
+                            disabled={isSubmitting}>
+                        {t("create-deck")}
                     </Button>
                 </form>)}
         </Formik>

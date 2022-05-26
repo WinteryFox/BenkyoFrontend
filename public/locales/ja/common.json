@@ -33,8 +33,9 @@
   "name": "名",
   "short-description": "要約",
   "description": "説明",
-  "source-language": "このデックは〇語を母語として話す人と",
-  "target-language": "〇語を話せるようになりたい人に向けられたものです",
+  "source-language": "このデッキは",
+  "target-language": "を母語とする",
+  "target-language-2": "を学びたい人に向けられたものです。",
   "give-answer": "正しい答えを入力してください",
   "save": "保存",
   "question": "問題",
@@ -42,7 +43,7 @@
   "edit": "編集",
   "cancel": "キャンセル",
   "delete": "削除",
-  "delete-title-prompt":"デックを削除",
-  "delete-desc-prompt":"本当にこのデックを永久に削除しますか？この操作は元に戻せません。",
+  "delete-title-prompt":"デッキを削除",
+  "delete-desc-prompt":"本当にこのデッキを削除しますか？この操作は元に戻せません。",
   "delete-confirm": "はい、削除します。"
 }

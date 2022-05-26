@@ -35,6 +35,7 @@
   "description": "Description",
   "source-language": "This course is aimed at people who speak",
   "target-language": "And want to learn",
+  "target-language-2": "",
   "give-answer": "Write down the correct answer",
   "save": "Save",
   "question": "Question",

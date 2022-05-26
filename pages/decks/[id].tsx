@@ -138,7 +138,7 @@ export default function Id() {
                     <div className={"flex justify-between"}>
                         <div className={"flex w-full justify-between items-center"}>
                             <div className={"flex w-full flex-col"}>
-                                <div className={"text-xs text-gray-400 italic dark:text-gray-300"}>
+                                <div className={"text-xs text-gray-400 dark:text-gray-300"}>
                                     {deckQuery.isLoading ?
                                         <p className={"h-4 w-40 rounded loading mt-2"}/> :
                                         t("created-at", {date: new Date(deckQuery.data!.createdAt).toLocaleDateString()})}
