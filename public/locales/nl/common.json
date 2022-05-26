@@ -40,6 +40,9 @@
   "question": "Vraag",
   "answers": "Antwoord",
   "edit": "Bewerken",
+  "cancel": "Annuleren",
   "delete": "Verwijderen",
+  "delete-title-prompt":"Verwijder Deck",
+  "delete-desc-prompt":"Weet je zeker dat je dit deck wilt verwijderen?",
   "copy-link": "Kopieer link"
 }

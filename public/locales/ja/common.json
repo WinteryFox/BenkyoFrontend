@@ -40,6 +40,9 @@
   "question": "問題",
   "answers": "答え",
   "edit": "編集",
+  "cancel": "キャンセル",
   "delete": "削除",
+  "delete-title-prompt":"Delete Deck",
+  "delete-desc-prompt":"Are you sure you want to remove this deck?",
   "copy-link": "リンクをコピー"
 }
