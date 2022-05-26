@@ -187,5 +187,5 @@ tr:hover td:last-child {
 }
 
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 80%);
+    background-color: rgba(0, 0, 0, 60%);
 }
