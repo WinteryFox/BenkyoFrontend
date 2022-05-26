@@ -20,17 +20,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export default function Home() {
     const {t} = useTranslation()
-    const {isLoading, error, data} = useQuery<Array<DeckData>, AxiosError>("search_decks", async () => {
-        await new Promise<void>(r => setTimeout(() => r(), 1000))
-        return await getDecks()
-    })
+    const {isLoading, error, data} = useQuery<Array<DeckData>, AxiosError>("search_decks", async () => await getDecks())
 
     if (error)
         return <AxiosErrorPage error={error}/>
     else if (isLoading)
-        return (
-            <div className={"flex flex-wrap m-6 md:mx-20 justify-center"}>
-                <div className={"flex grow-0 select-none m-2 w-72 h-[332px] flex-col p-4 rounded-3xl border border-gray-200 dark:border-gray-600"}>
+        return <div className={"flex flex-wrap m-6 md:mx-20 justify-center"}>
+            {[...Array(50)].map((value, index) =>
+                <div key={index}
+                     className={"flex grow-0 select-none m-2 w-72 h-[332px] flex-col p-4 rounded-3xl border border-gray-200 dark:border-gray-600"}>
                     <div className={"flex justify-center"}>
                         <SkeletonDiv className={"flex rounded-3xl w-40 h-40"}/>
                     </div>
@@ -39,9 +37,8 @@ export default function Home() {
                     <SkeletonDiv className={"mt-1 w-full h-5 rounded"}/>
                     <SkeletonDiv className={"mt-1 w-full h-5 rounded"}/>
                     <SkeletonDiv className={"mt-1 w-2/3 h-5 rounded"}/>
-                </div>
-            </div>
-        )
+                </div>)}
+        </div>
     else
         return (
             <div className={"flex flex-wrap m-6 md:mx-20 justify-center"}>
