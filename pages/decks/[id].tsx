@@ -22,7 +22,7 @@ import Dialog from "../../components/Dialog";
 import DefaultErrorPage from "next/error";
 import {AxiosError} from "axios";
 import ImageWithFallback from "../../components/ImageWithFallback";
-import {useState} from "react";
+import {useRef} from "react";
 
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -47,7 +47,7 @@ export default function Id() {
     const router = useRouter()
     const {id} = router.query
     const queryClient = useQueryClient()
-    const [isDeleteDialog, setDeleteDialog] = useState(false)
+    const deleteRef = useRef<HTMLDialogElement>(null)
 
     const deckQuery = useQuery<DeckData, AxiosError>(
         ['deck', id],
@@ -109,11 +109,11 @@ export default function Id() {
                                 </Button>
                                 <Button
                                     className={"flex btn-icon mt-2 md:mt-0 lg:mt-2 items-center bg-rose-200 hover:bg-rose-700 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-rose-600 dark:hover:bg-rose-700"}
-                                    onClick={() => setDeleteDialog(true)}
+                                    onClick={() => deleteRef.current?.showModal()}
                                     id={"delete-deck"}>
                                     {t("delete")} <i className={"material-icons"}>delete</i>
                                 </Button>
-                                <Dialog id={"dialog"} open={isDeleteDialog} onClose={() => setDeleteDialog(false)}>
+                                <Dialog ref={deleteRef}>
                                     <div className={"text-2xl pb-2 font-bold dark:text-white"}>
                                         {t("delete-title-prompt")}
                                     </div>
@@ -123,13 +123,9 @@ export default function Id() {
                                     <form method="dialog">
                                         <menu className={"flex space-x-3"}>
                                             <Button
-                                                className={"flex text-lg mt-2 md:mt-0 lg:mt-2 items-center bg-gray-200 hover:bg-gray-400 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500/80"}>
-                                                {t("cancel")}
-                                            </Button>
-                                            <Button
                                                 className={"flex text-lg mt-2 md:mt-0 lg:mt-2 items-center bg-rose-200 hover:bg-rose-600 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-rose-600 dark:hover:bg-rose-600/80"}
                                                 onClick={() => deleteDeckMutation.mutate()}>
-                                                {t("delete")}
+                                                {t("delete-confirm")}
                                             </Button>
                                         </menu>
                                     </form>

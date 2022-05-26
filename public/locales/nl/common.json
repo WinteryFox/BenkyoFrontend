@@ -42,7 +42,7 @@
   "edit": "Bewerken",
   "cancel": "Annuleren",
   "delete": "Verwijderen",
-  "delete-title-prompt":"Verwijder Deck",
-  "delete-desc-prompt":"Weet je zeker dat je dit deck wilt verwijderen?",
-  "copy-link": "Kopieer link"
+  "delete-title-prompt":"Deck verwijderen",
+  "delete-desc-prompt":"Weet je zeker dat je dit deck permanent wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+  "delete-confirm": "Ja, ik weet het zeker."
 }

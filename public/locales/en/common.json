@@ -42,7 +42,7 @@
   "edit": "Edit",
   "cancel": "Cancel",
   "delete": "Delete",
-  "delete-title-prompt":"Delete Deck",
-  "delete-desc-prompt":"Are you sure you want to remove this deck?",
-  "copy-link": "Copy link"
+  "delete-title-prompt":"Delete deck",
+  "delete-desc-prompt":"Are you sure you want to permanently delete this deck? This action cannot be undone.",
+  "delete-confirm": "Yes, I'm sure."
 }

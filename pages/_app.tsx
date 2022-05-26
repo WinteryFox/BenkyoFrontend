@@ -42,7 +42,7 @@ function Benkyo({Component, pageProps, router}: AppProps) {
             <Head>
                 <title>Benkyo</title>
                 <link rel={"shortcut icon"} type={"image/svg"} href={"/logo.svg"}/>
-                <link rel={"stylesheet"} href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+                <link rel={"stylesheet"} href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"/>
 
                 <meta name={"viewport"} content={"width=device-width,initial-scale=1.0,user-scalable=yes"}/>
 

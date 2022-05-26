@@ -150,18 +150,21 @@ tr:hover td:last-child {
 
 @media (prefers-reduced-motion: reduce) and (prefers-color-scheme: light) {
     .loading {
+        user-select: none;
         background: var(--loading-bg);
     }
 }
 
 @media (prefers-reduced-motion: reduce) and (prefers-color-scheme: dark) {
     .loading {
+        user-select: none;
         background: var(--loading-bg-dark)
     }
 }
 
 @media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: light) {
     .loading {
+        user-select: none;
         background: linear-gradient(110deg, var(--loading-bg) 8%, var(--loading-highlight) 18%, var(--loading-bg) 33%);
         background-size: 200% 500%;
         animation: 2s shine linear infinite;
@@ -170,6 +173,7 @@ tr:hover td:last-child {
 
 @media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark) {
     .loading {
+        user-select: none;
         background: linear-gradient(110deg, var(--loading-bg-dark) 8%, var(--loading-highlight-dark) 18%, var(--loading-bg-dark) 33%);
         background-size: 200% 500%;
         animation: 2s shine linear infinite;
@@ -180,4 +184,8 @@ tr:hover td:last-child {
     to {
         background-position-x: -200%;
     }
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 80%);
 }

@@ -42,7 +42,7 @@
   "edit": "編集",
   "cancel": "キャンセル",
   "delete": "削除",
-  "delete-title-prompt":"Delete Deck",
-  "delete-desc-prompt":"Are you sure you want to remove this deck?",
-  "copy-link": "リンクをコピー"
+  "delete-title-prompt":"デックを削除",
+  "delete-desc-prompt":"本当にこのデックを永久に削除しますか？この操作は元に戻せません。",
+  "delete-confirm": "はい、削除します。"
 }

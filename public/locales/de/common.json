@@ -44,5 +44,5 @@
   "delete": "Entfernen",
   "delete-title-prompt":"Deck Entfernen",
   "delete-desc-prompt":"Sind Sie sicher, dass Sie dieses Deck entfernen möchten?",
-  "copy-link": "Link kopieren"
+  "delete-confirm": "Ja, ich bin sicher."
 }
