@@ -8,6 +8,7 @@ export default function Document() {
     return (
         <Html lang={translation.i18n.language}>
             <Head>
+                <link rel={"stylesheet"} href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"/>
             </Head>
             <body>
             <Main/>
