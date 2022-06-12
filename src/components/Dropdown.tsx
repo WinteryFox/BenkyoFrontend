@@ -28,7 +28,7 @@ export default function Dropdown(props: {
         <div className="relative inline-block text-left rounded-full" tabIndex={0}
              onFocus={() => setExpanded(true)} onBlur={blurHandler} ref={ref}>
             <div
-                className="select-none cursor-pointer inline-flex border-gray-300 px-4 py-2 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                className="select-none cursor-pointer inline-flex border-gray-300 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                 id="menu-button" aria-expanded={isExpanded} aria-haspopup="true">
                 {props.children == undefined ? props.options.find(v => v.value == props.value)?.label : props.children}
                 <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"

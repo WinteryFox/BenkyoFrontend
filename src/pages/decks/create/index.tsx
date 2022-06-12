@@ -3,7 +3,7 @@ import {
     CreateDeckRequest,
     getAvailableLanguages,
     Locale
-} from "../../../src/Api";
+} from "../../../Api";
 import {GetStaticProps} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {Formik, FormikErrors} from "formik";

@@ -8,10 +8,10 @@ import Link from "next/link";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import background from "../resources/images/cherry_blossom.svg";
-import {RootState, set, useAppDispatch} from "../src/UserStore";
+import {RootState, set, useAppDispatch} from "../UserStore";
 import {useSelector} from "react-redux";
 import {Auth} from "aws-amplify"
-import {getSelf} from "../src/User";
+import {getSelf} from "../User";
 
 export async function getStaticProps({locale}: any) {
     return {

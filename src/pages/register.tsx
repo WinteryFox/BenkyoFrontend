@@ -10,7 +10,7 @@ import {useState} from "react";
 import Head from "next/head";
 import background from "../resources/images/cherry_blossom.svg";
 import {useSelector} from "react-redux";
-import {RootState} from "../src/UserStore";
+import {RootState} from "../UserStore";
 import {Auth} from "aws-amplify"
 
 export async function getStaticProps({locale}: any) {

@@ -1,17 +1,20 @@
-/** @type {import('next').NextConfig} */
 const {withPlugins} = require("next-compose-plugins")
 const {i18n} = require("./next-i18next.config")
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
     enabled: false
 })
 
-const domains = process.env.NODE_ENV === "production" ? [] : ["localhost"]
+const domains = process.env.NODE_ENV === "production" ? ["localhost"] : ["localhost"]
 
-module.exports = withPlugins([[withBundleAnalyzer]], {
+/** @type {import('next').NextConfig} */
+const config = {
     compress: true,
     reactStrictMode: true,
-    i18n,
+    productionBrowserSourceMaps: true,
     images: {
         domains
-    }
-})
+    },
+    i18n: i18n
+}
+
+module.exports = withPlugins([[withBundleAnalyzer]], config)

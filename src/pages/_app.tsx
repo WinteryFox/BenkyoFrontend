@@ -1,11 +1,9 @@
-import '../styles/globals.css'
+import '../../styles/globals.css'
 import type {AppProps} from 'next/app'
 import {appWithTranslation} from "next-i18next";
 import React, {Component, useEffect} from "react";
-import nextI18NextConfig from '../next-i18next.config.js';
-import {Provider} from "react-redux";
-import store, {set} from "../src/UserStore";
-import {getSelf} from "../src/User";
+import nextI18NextConfig from '../../next-i18next.config.js';
+import {getSelf} from "../User";
 import Head from "next/head";
 import {QueryClient, QueryClientProvider} from "react-query";
 import Amplify from "aws-amplify";
@@ -30,7 +28,7 @@ function Benkyo({Component, pageProps, router}: AppProps) {
             router.push({pathname, query}, asPath, {locale: locale}).then()
         getSelf()
             .then((user) => {
-                store.dispatch(set(user))
+                // TODO
             })
             .catch((e) => {
                 console.log(e)
@@ -42,7 +40,6 @@ function Benkyo({Component, pageProps, router}: AppProps) {
             <Head>
                 <title>Benkyo</title>
                 <link rel={"shortcut icon"} type={"image/svg"} href={"/logo.svg"}/>
-                <link rel={"stylesheet"} href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"/>
 
                 <meta name={"viewport"} content={"width=device-width,initial-scale=1.0,user-scalable=yes"}/>
 
@@ -65,14 +62,12 @@ function Benkyo({Component, pageProps, router}: AppProps) {
                 <meta property={"twitter:image"} content={"/logo.svg"}/>
             </Head>
 
-            <Provider store={store}>
-                <QueryClientProvider client={queryClient}>
-                    <Navbar/>
-                    <main>
-                        <Component {...pageProps} />
-                    </main>
-                </QueryClientProvider>
-            </Provider>
+            <QueryClientProvider client={queryClient}>
+                <Navbar/>
+                <main>
+                    <Component {...pageProps} />
+                </main>
+            </QueryClientProvider>
         </>
     )
 }

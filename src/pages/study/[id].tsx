@@ -1,13 +1,9 @@
 import {GetStaticPaths, GetStaticProps} from "next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import Head from "next/head";
 import {useTranslation} from "next-i18next";
 import {useRouter} from "next/router";
-import {useQuery} from "react-query";
-import {CardAttempt, CardData, DeckData, getDeck, getNewCards} from "../../src/Api";
-import Input from "../../components/Input";
+import {CardAttempt, CardData, DeckData} from "../../Api";
 import {useState} from "react";
-import DefaultErrorPage from "next/error";
 
 export const getStaticProps: GetStaticProps = async (context) => {
     return {

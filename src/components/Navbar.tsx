@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import {useTranslation} from "next-i18next";
-import {RootState} from "../src/UserStore";
+import {RootState} from "../UserStore";
 import {useSelector} from "react-redux";
 import Dropdown, {Option} from "./Dropdown";
 import {useRouter} from "next/router";
 import {useState} from "react";
 import Flag from "country-flag-icons/react/3x2";
-import logo from "../public/logo.svg";
+import logo from "../../public/logo.svg";
 
 export default function Navbar() {
     const {i18n, t} = useTranslation()
@@ -23,46 +23,44 @@ export default function Navbar() {
 
     const options: Option[] = [
         {
-            label: (
+            label:
                 <div className={"flex items-center"}>
-                    <Flag.GB className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> English
-                </div>
-            ), value: 'en'
+                    <Flag.GB className={"h-4 rounded mr-2"} aria-label={"Great Britain"} width={24} height={16}/> English
+                </div>,
+            value: 'en'
         },
         {
-            label: (
+            label:
                 <div className={"flex items-center"}>
-                    <Flag.DE className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> Deutsch
-                </div>
-            ), value: 'de'
+                    <Flag.DE className={"h-4 rounded mr-2"} aria-label={"Deutschland"} width={24} height={16}/> Deutsch
+                </div>,
+            value: 'de'
         },
         {
-            label: (
+            label:
                 <div className={"flex items-center"}>
-                    <Flag.NL className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> Nederlands
-                </div>
-            ), value: 'nl'
+                    <Flag.NL className={"h-4 rounded mr-2"} aria-label={"Nederland"} width={24} height={16}/> Nederlands
+                </div>,
+            value: 'nl'
         },
         {
-            label: (
-                <div className={"flex items-center"}>
-                    <Flag.JP className={"h-4 rounded mr-2"} aria-label={"Nederland"}/> 日本語
-                </div>
-            ), value: 'ja'
+            label: <div className={"flex items-center"}>
+                <Flag.JP className={"h-4 rounded mr-2"} aria-label={"日本"} width={24} height={16}/> 日本語
+            </div>,
+            value: 'ja'
         }
     ]
 
     return (
-        <nav
-            className={"flex sticky items-center w-full z-40 justify-between px-8 py-3"}>
+        <nav className={"nav"}>
             <Link href={"/"}>
                 <a className={"flex items-center"} tabIndex={0}>
-                    <Image src={logo} alt={"Logo"} width={"32px"} height={"32px"} priority/>
+                    <Image src={logo} alt={"Logo"} width={36} height={36} priority/>
                     <h1 className={"text-3xl ml-2 dark:text-white hidden md:block"}>Benkyo</h1>
                 </a>
             </Link>
             <div className={"flex items-center"}>
-                <div className={"mr-2"}>
+                <div className={"mr-4"}>
                     <Dropdown value={locale} options={options} onChange={value => setLocale(value)}/>
                 </div>
                 {user == null ?

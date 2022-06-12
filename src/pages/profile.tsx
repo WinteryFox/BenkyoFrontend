@@ -1,6 +1,6 @@
 import Button from "../components/Button";
 import {Auth} from "aws-amplify"
-import {RootState, set, useAppDispatch} from "../src/UserStore";
+import {RootState, set, useAppDispatch} from "../UserStore";
 import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useSelector} from "react-redux";

@@ -9,6 +9,7 @@
     --loading-bg-dark: #333333;
     --loading-highlight: #f4f4f4;
     --loading-highlight-dark: #424242;
+    --nav-height: 64px;
 }
 
 @layer base {
@@ -99,13 +100,65 @@
     .dropdown-item {
         @apply text-gray-700 block px-4 py-2 rounded select-none hover:bg-gray-200 hover:cursor-pointer
     }
+
+    .nav {
+        @apply flex sticky items-center w-full z-40 justify-between px-8 py-3;
+        height: var(--nav-height);
+    }
+
+    .deck-browse-list {
+        @apply flex flex-wrap px-6 pt-4 md:px-20 justify-center;
+    }
+
+    .loading-container {
+        @apply overflow-hidden;
+        max-height: calc(100vh - var(--nav-height));
+    }
+
+    @media (prefers-reduced-motion: reduce) and (prefers-color-scheme: light) {
+        .loading {
+            user-select: none;
+            background: var(--loading-bg);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) and (prefers-color-scheme: dark) {
+        .loading {
+            user-select: none;
+            background: var(--loading-bg-dark)
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: light) {
+        .loading {
+            user-select: none;
+            background: linear-gradient(110deg, var(--loading-bg) 8%, var(--loading-highlight) 18%, var(--loading-bg) 33%);
+            background-size: 200% 500%;
+            animation: 2s shine linear infinite;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark) {
+        .loading {
+            user-select: none;
+            background: linear-gradient(110deg, var(--loading-bg-dark) 8%, var(--loading-highlight-dark) 18%, var(--loading-bg-dark) 33%);
+            background-size: 200% 500%;
+            animation: 2s shine linear infinite;
+        }
+    }
+
+    @keyframes shine {
+        to {
+            background-position: right -200% top;
+        }
+    }
 }
 
 *:focus-visible {
-    @apply outline outline-pink-500 outline-2;
+    @apply outline outline-2 outline-pink-500;
 }
 
-body {
+body, #__next {
     @apply dark:bg-black dark:text-white;
     text-rendering: optimizeLegibility;
     line-height: 1.15;
@@ -146,44 +199,6 @@ tr:hover td:first-child {
 
 tr:hover td:last-child {
     @apply border-r-violet-500;
-}
-
-@media (prefers-reduced-motion: reduce) and (prefers-color-scheme: light) {
-    .loading {
-        user-select: none;
-        background: var(--loading-bg);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) and (prefers-color-scheme: dark) {
-    .loading {
-        user-select: none;
-        background: var(--loading-bg-dark)
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: light) {
-    .loading {
-        user-select: none;
-        background: linear-gradient(110deg, var(--loading-bg) 8%, var(--loading-highlight) 18%, var(--loading-bg) 33%);
-        background-size: 200% 500%;
-        animation: 2s shine linear infinite;
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark) {
-    .loading {
-        user-select: none;
-        background: linear-gradient(110deg, var(--loading-bg-dark) 8%, var(--loading-highlight-dark) 18%, var(--loading-bg-dark) 33%);
-        background-size: 200% 500%;
-        animation: 2s shine linear infinite;
-    }
-}
-
-@keyframes shine {
-    to {
-        background-position-x: -200%;
-    }
 }
 
 dialog::backdrop {
