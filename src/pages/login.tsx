@@ -8,10 +8,9 @@ import Link from "next/link";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import background from "../resources/images/cherry_blossom.svg";
-import {RootState, set, useAppDispatch} from "../UserStore";
-import {useSelector} from "react-redux";
 import {Auth} from "aws-amplify"
-import {getSelf} from "../User";
+import {useQuery, useQueryClient} from "react-query";
+import {userQuery} from "../Queries";
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -28,16 +27,11 @@ interface FormValues {
 
 export default function Login() {
     const router = useRouter()
-    useSelector((state: RootState) => {
-        if (state.userState.user != null)
-            router.push("/").then(() => {
-            })
-
-        return null
-    })
-
     const {t} = useTranslation()
-    const dispatch = useAppDispatch()
+    const queryClient = useQueryClient()
+    const user = useQuery("user", userQuery)
+    if (!user.isLoading && user.data != null)
+        router.push("/").then()
 
     const initialValues: FormValues = {
         email: "",
@@ -55,8 +49,7 @@ export default function Login() {
                 onSubmit={async (values, {setSubmitting, setErrors}) => {
                     try {
                         await Auth.signIn(values.email, values.password)
-                        const user = await getSelf()
-                        dispatch(set(user))
+                        await queryClient.invalidateQueries(["user"])
                         await router.push("/")
                     } catch (e: any) {
                         const errors: FormikErrors<FormValues> = {}

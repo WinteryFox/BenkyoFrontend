@@ -14,8 +14,6 @@ import Head from "next/head"
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {useRouter} from "next/router";
 import Markdown from "../../components/Markdown";
-import {useSelector} from "react-redux";
-import {RootState} from "../../UserStore";
 import {languageFromCode} from "../../languages";
 import logo from "../../../public/logo.svg";
 import Dialog from "../../components/Dialog";
@@ -24,6 +22,7 @@ import {AxiosError} from "axios";
 import ImageWithFallback from "../../components/ImageWithFallback";
 import {useRef} from "react";
 import SkeletonDeck from "../../components/skeleton/SkeletonDeck";
+import {userQuery} from "../../Queries";
 
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -42,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 }
 
 export default function Id() {
-    const user = useSelector((state: RootState) => state.userState.user)
+    const user = useQuery("user", userQuery)
     const translation = useTranslation()
     const t = translation.t
     const router = useRouter()
@@ -95,7 +94,7 @@ export default function Id() {
                     </div>
 
                     <div className={"flex flex-col md:flex-row lg:flex-col lg:w-full w-full mt-4"}>
-                        {user != null && deckQuery.data?.author == user.id && (
+                        {deckQuery.data?.author == user.data?.id && (
                             <>
                                 <Button
                                     className={"flex btn-icon mt-1.5 md:mt-0 lg:mt-1.5 lg:mr-0 mr-1.5 bg-amber-100 hover:bg-orange-500 hover:text-white hover:shadow-lg hover:shadow-violet-500/30 transition-all dark:text-white dark:bg-cyan-600 dark:hover:bg-cyan-700"}
@@ -171,7 +170,7 @@ export default function Id() {
                             id={"study"}
                             className={"mb-3 text-white text-lg bg-violet-600 hover:bg-violet-500 active:bg-violet-400 active:scale-95 hover:shadow-lg hover:shadow-violet-500/30 dark:active:bg-violet-600 dark:bg-violet-600 dark:hover:bg-violet-700"}
                             onClick={() => router.push(`/study/${id}`)}
-                            disabled={cardsQuery.data?.cards.length == 0}>
+                            disabled={cardsQuery.data?.cards.length == 0 || user.isLoading || !user.data}>
                             {t("start-deck")}
                         </Button>
                     </div>

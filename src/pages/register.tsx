@@ -9,9 +9,9 @@ import {useRouter} from "next/router";
 import {useState} from "react";
 import Head from "next/head";
 import background from "../resources/images/cherry_blossom.svg";
-import {useSelector} from "react-redux";
-import {RootState} from "../UserStore";
 import {Auth} from "aws-amplify"
+import {useQuery} from "react-query";
+import {userQuery} from "../Queries";
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -30,16 +30,11 @@ interface FormValues {
 
 export default function Register() {
     const router = useRouter()
-    useSelector((state: RootState) => {
-        if (state.userState.user != null)
-            router.push("/").then(() => {
-            })
-
-        return null
-    })
-
     const {t} = useTranslation()
     const [state, changeState] = useState<boolean>(false)
+    const user = useQuery("user", userQuery)
+    if (!user.isLoading && user.data != null)
+        router.push("/").then()
 
     const initialValues: FormValues = {
         email: "",

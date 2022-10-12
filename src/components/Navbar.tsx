@@ -1,19 +1,20 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import {useTranslation} from "next-i18next";
-import {RootState} from "../UserStore";
-import {useSelector} from "react-redux";
 import Dropdown, {Option} from "./Dropdown";
 import {useRouter} from "next/router";
 import {useState} from "react";
 import Flag from "country-flag-icons/react/3x2";
 import logo from "../../public/logo.svg";
+import {useQuery} from "react-query";
+import User from "../Api";
+import {userQuery} from "../Queries";
 
 export default function Navbar() {
     const {i18n, t} = useTranslation()
     const router = useRouter()
     const {pathname, asPath, query} = router
-    const user = useSelector((state: RootState) => state.userState.user)
+    const user = useQuery<User>("user", userQuery)
     const [locale] = useState<string>(i18n.language)
 
     async function setLocale(option: Option) {
@@ -63,7 +64,7 @@ export default function Navbar() {
                 <div className={"mr-4"}>
                     <Dropdown value={locale} options={options} onChange={value => setLocale(value)}/>
                 </div>
-                {user == null ?
+                {user.isLoading || user.isError ?
                     <Link href={"/login"}>
                         <a id={"login"}
                            className={"px-5 py-2 rounded-full border border-pink-200 bg-pink-100 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-500/30 dark:bg-pink-300 dark:hover:bg-pink-300/90 dark:text-black"}>
@@ -73,7 +74,7 @@ export default function Navbar() {
                     <Link href={"/profile"}>
                         <a id={"profile"}
                            className={"px-5 py-2.5 rounded-full border dark:text-white hover:bg-gray-100 active:bg-gray-50 dark:active:bg-gray-700 dark:hover:bg-gray-800 dark:border-gray-300 dark:border-gray-600"}>
-                            {user.username}
+                            {user.data!.username}
                         </a>
                     </Link>}
             </div>

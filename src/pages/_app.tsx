@@ -3,7 +3,6 @@ import type {AppProps} from 'next/app'
 import {appWithTranslation} from "next-i18next";
 import React, {Component, useEffect} from "react";
 import nextI18NextConfig from '../../next-i18next.config.js';
-import {getSelf} from "../User";
 import Head from "next/head";
 import {QueryClient, QueryClientProvider} from "react-query";
 import Amplify from "aws-amplify";
@@ -26,13 +25,6 @@ function Benkyo({Component, pageProps, router}: AppProps) {
         const locale = window.localStorage.getItem("locale")
         if (locale != null)
             router.push({pathname, query}, asPath, {locale: locale}).then()
-        getSelf()
-            .then((user) => {
-                // TODO
-            })
-            .catch((e) => {
-                console.log(e)
-            })
     }, [])
 
     return (

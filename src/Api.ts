@@ -25,6 +25,12 @@ client.interceptors.request.use(async (config) => {
     return config
 })
 
+export default interface User {
+    id: string
+    email: string
+    username: string
+}
+
 export interface DeckData {
     id: string,
     author: string,
