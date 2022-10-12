@@ -1,20 +1,19 @@
+/** @type {import('tailwindcss').TailwindConfig} */
 module.exports = {
-  mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: "false", // or 'media' or 'class'
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          500: "#8e8ec1",
-          700: "#7171ad"
+    mode: 'jit',
+    content: [
+        './src/pages/**/*.{js,ts,jsx,tsx}',
+        './src/components/**/*.{js,ts,jsx,tsx}'
+    ],
+    theme: {
+        extend: {
         },
-        secondary: "#ffd9ec"
-      }
-    }
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+        fontFamily: {
+            "sans": ["Whitney", '"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"]
+        }
+    },
+    plugins: [
+        require("@tailwindcss/forms"),
+        require("@tailwindcss/typography")
+    ],
 }
