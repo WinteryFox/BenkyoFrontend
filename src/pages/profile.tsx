@@ -1,10 +1,10 @@
 import Button from "../components/Button";
 import {Auth} from "aws-amplify"
-import {RootState, set, useAppDispatch} from "../UserStore";
 import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {useQuery, useQueryClient} from "react-query";
+import {userQuery} from "../Queries";
 
 export async function getStaticProps({locale}: any) {
     return {
@@ -15,12 +15,12 @@ export async function getStaticProps({locale}: any) {
 }
 
 export default function Profile() {
-    const dispatch = useAppDispatch()
     const {t} = useTranslation()
     const router = useRouter()
-    const user = useSelector(async (state: RootState) => state.userState.user)
+    const queryClient = useQueryClient()
+    const user = useQuery(["user"], userQuery)
 
-    if (!user)
+    if (!user.isLoading && !user.data)
         return "You're not logged in." // TODO
 
     return (
@@ -28,7 +28,7 @@ export default function Profile() {
             <Button className={" max-w-xs w-full text-white bg-red-500 text-lg hover:shadow hover:shadow-red-400 hover:bg-red-400"}
                     onClick={async () => {
                         await Auth.signOut()
-                        dispatch(set(null))
+                        await queryClient.invalidateQueries(["user"])
                         await router.push("/login")
                     }}>
                 {t("logout")}
